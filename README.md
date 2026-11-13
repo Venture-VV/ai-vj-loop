@@ -21,7 +21,9 @@ Library Loop 的完整开发交接：五尊 Tripo 雕像、程序化图书馆、
 | 第二版：白脚灯 | `library_loop_white_reference.blend` | [library_loop_white_reference.mp4](https://github.com/Venture-VV/ai-vj-loop/releases/download/library-loop-handoff-20261113/library_loop_white_reference.mp4) | 用户反馈太暗、太闪、背景图书馆不可见 |
 | 第三版：金色图书馆 | `library_loop_gallery.blend` | [library_loop_gallery.mp4](https://github.com/Venture-VV/ai-vj-loop/releases/download/library-loop-handoff-20261113/library_loop_gallery.mp4) | 稳定背景与柔和雕像照明，低幅度 10 秒循环；保留为对照 |
 
-三版均为 HERO 主画面，1920×744、300 帧、30 fps、10 秒，带原参考音乐。TOP 扫描场景不是三版最终成片的一部分。
+第四版（重设计，进行中）：`scripts/sanctum_lighting.py` 从第一版场景生成 `library_loop_sanctum.blend`，说明见 [blender/library-loop/README.md](blender/library-loop/README.md) 的“重设计版”一节。旧三版原样保留。
+
+前三版均为 HERO 主画面，1920×744、300 帧、30 fps、10 秒，带原参考音乐。TOP 扫描场景不是三版最终成片的一部分。
 
 ## 取得完整工作区
 

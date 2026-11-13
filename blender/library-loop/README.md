@@ -225,6 +225,52 @@ blender -b library_loop_gallery.blend --python-exit-code 2 -P scripts/render.py 
 - [VjLooper · core/signals.py](https://github.com/MatiasDelera/vjlooper/blob/main/core/signals.py)：基础值、变化幅度、相位与闭环控制分离。
 - [BlenderBeat · visual/lighting.py](https://github.com/hfxstudios0001/blender-beat/blob/main/blenderbeat/visual/lighting.py) 与 [smoothing.py](https://github.com/hfxstudios0001/blender-beat/blob/main/blenderbeat/animation/smoothing.py)：主光/补光/轮廓光分工及信号平滑。这里采用自己编写的低幅度正弦循环，不使用其音频瞬态频闪。
 
+### 重设计版：琥珀书库 · 青色荣光（sanctum）
+
+2026-11-13 用户要求以第一版为对象，整体重做灯光舞美与激光，并向成熟的开源灯控项目学习。这一版不再是给第一版调参数：第一版的脚灯频闪、蓝色洗墙灯、天花板灯管和四层平面激光全部隐藏（对象保留，旧版仍可重现），换成一套新的灯组和按灯控软件结构写的场景引擎。五尊雕像、机位、布景几何、飞书动画和音乐不变，不调用 Tripo。
+
+```bash
+python3 scripts/test_cue.py
+```
+
+```bash
+blender -b library_loop_final.blend --python-exit-code 2 -P scripts/sanctum_lighting.py -- --out library_loop_sanctum.blend
+```
+
+第一条是离线测试（不需要 Blender）。第二条从第一版场景另存出新场景，并把校验记录写到 `out/library_loop_sanctum-validation.json`。
+
+**画面怎么组织**
+
+- 图书馆：每条通道三盏向下的琥珀色暖光加后墙洗光，书架常亮、有近中远三层。
+- 雕像：高位象牙白主光只照雕像（灯光链接），冷色轮廓光从身后上方勾边；黑曜石魔鬼另加两块大面积柔光，靠反光成形。
+- 柱子：换成深色石材，只留一点顶光，退成画框。
+- 激光三族加一次扫描，同一时刻最多两族在亮，全部在雕像背后或直接落在表面：
+  - A 荣光：米迦勒身后通道里的真实背光穿过雾，形成放射光缝；外加两扇像翅膀一样展开的细射线。
+  - B 书架扫描线：四条侧通道口的垂直狭缝光，在书墙上画一条滑向深处的线，回程调暗。
+  - C 地火：两侧魔鬼身后的余烬点光，加每侧 5 条向上的红色细射线。
+  - D 轮廓扫描：镜头上方的水平狭缝光，整个循环只走一次，在雕像表面画一条从头顶降到底座的等高线。
+- 节奏：六个场景之间只有渐变；鼓点重音是 3 帧缓起、指数回落的包络，幅度 12%；没有黑场。
+
+**激光材质**（`mat_beam()`）：每条射线是一根柔边的管子，不是等亮的细棒。横向是一条过曝的细核心加一圈在管壁之前就衰减到零的光晕，看不到几何轮廓；纵向根部最亮、到末端消失；每条射线有自己的亮度；一层缓慢漂移的三维噪声和细小亮点让它像穿过真实的烟雾；靠近天花板和地面时在世界坐标里淡出。落在书架和雕像上的线不是贴图，而是真实的狭缝光，会顺着书脊和衣褶起伏。
+
+**向成熟项目学到并落实的结构**（只借方法，未引入代码）：节拍、小节、循环三级相位来自 [Afterglow](https://github.com/Deep-Symmetry/afterglow/blob/main/src/afterglow/rhythm.clj)；场景加渐变时间、闭合运动曲线、回程调暗和总控限幅来自 [QLC+](https://github.com/mcallegari/qlcplus/blob/master/engine/src/efx.cpp)；快起慢落的重音滤波来自 [LedFx](https://github.com/LedFx/LedFx/blob/main/ledfx/effects/math.py)；宽光束用真实灯光加雾、激光用发光几何体来自 [blender-dmx](https://github.com/open-stage/blender-dmx/blob/main/gdtf.py)；光束的核心、柔边与末端衰减参考 [VR Stage Lighting](https://github.com/AcChosen/VR-Stage-Lighting/blob/main/Packages/com.acchosen.vr-stage-lighting/Runtime/Shaders/MovingLights/VRSL-BasicLaser-DMX.shader)。
+
+**构建时的自动检查**（任何一项不过就报错，不保存场景）：所有通道在第 301 帧闭合；300 帧里没有一条射线碰到雕像或柱子；没有纸页或飞书落在雕像前方；荣光发射点从镜头看被遮住；没有灯具落在雕像内部；雕像几何、材质分配、位置和机位未变；旧灯组全部不可渲染。演出本身的规则（不黑场、不硬切、最多两族激光、接缝处激光全灭）在 `sanctum_show.py` 的 `master()` 里检查。
+
+先渲关键帧，输出用新目录：
+
+```bash
+blender -b library_loop_sanctum.blend --python-exit-code 2 -P scripts/render.py -- --scene HERO --out renders/sanctum_keys --start 150 --end 150
+```
+
+```bash
+python3 scripts/qa_frames.py renders/sanctum_keys --partial
+```
+
+`qa_frames.py` 量整帧亮度、分区亮度、闪烁和循环接缝；渲满 300 帧时去掉 `--partial`，任何一项验收标准不过就以非零状态退出。完整 300 帧仍须先向用户报告实测时长并获得确认。
+
+没有 Blender 的机器（例如云端沙箱）可以用 `tools/bpy_shim.py` 配合 PyPI 的 `bpy` 模块在 CPU 上跑构建检查、关键帧和低清预览。
+
 ### 交给本地 AI
 
 完整的任务书在 [`LOCAL_AI_PROMPT.md`](LOCAL_AI_PROMPT.md)，整段发给本地的 Claude Code / Cursor 即可。它包含环境检查、Tripo 生成（脚本或官方 CLI）、导入、调画面、渲染、出片六步，以及花钱和长时间渲染前必须先问你的规矩。
@@ -266,7 +312,12 @@ blender -b library_loop_gallery.blend --python-exit-code 2 -P scripts/render.py 
 scripts/build_scene.py     生成整个场景（唯一需要改的创作文件）
 scripts/import_tripo.py    把 Tripo 模型换进五个位置
 scripts/tripo_batch.py     调 Tripo API 批量生成（纯标准库）
-scripts/render.py          渲 PNG 序列，可续渲
+scripts/render.py          渲 PNG 序列，可续渲（清理未写完的帧，拒绝与其它场景的帧混在同一目录）
+scripts/cue.py             节拍钟、场景渐变、效果、重音滤波、总控检查（不依赖 Blender）
+scripts/sanctum_show.py    重设计版的色板、场景列表与全部通道
+scripts/sanctum_lighting.py  重设计版：从第一版场景另存出新场景，含灯具表、激光与构建检查
+scripts/test_cue.py        上面两者的离线测试
+scripts/qa_frames.py       对渲染帧量亮度、闪烁、分区与循环接缝，按验收标准判定
 scripts/assemble.py        PNG + 音乐 → MP4（用 Blender 自带的剪辑器，不用装 ffmpeg）
 tripo/assets.json          模型清单和提示词
 reference/                 裁好的参考片、音乐、逐帧亮度数据、参考截图

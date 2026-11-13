@@ -103,7 +103,7 @@ def fixtures():
     for sgn in (-1, 1):                                         # B rakes: vertical slit projectors
         for group, xc, wall in (("rake_in", 2.6, 3.64), ("rake_out", 5.2, 6.24)):
             add(id="RAKE_%s_%s" % (group[5:], "L" if sgn < 0 else "R"), group=group, kind="SPOT",
-                loc=(sgn * (xc - 0.75), 2.36, 2.3), aim=(sgn * wall, 6.0, 2.3), color="laser", watts=13000, spot=88,
+                loc=(sgn * (xc - 0.75), 2.36, 2.3), aim=(sgn * wall, 6.0, 2.3), color="laser", watts=19000, spot=88,
                 blend=0.05, radius=0.0, volume=False, slit="x", wall=sgn * wall, link="shelves", block="shelves")
     # D contour scan: horizontal slit from above the lens
     add(id="SCAN", group="scan", kind="SPOT", loc=(0.0, -9.0, 4.8), aim=(0.0, 0.9, 4.3), color="laser", watts=42000,
