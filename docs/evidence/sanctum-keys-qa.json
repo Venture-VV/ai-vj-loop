@@ -1,0 +1,133 @@
+{
+  "folder": "renders/sanctum_keys_v2",
+  "frames": 10,
+  "mean": 0.22224669754505158,
+  "darkest": 0.20072634518146515,
+  "darkest_over_mean": 0.9031690792200678,
+  "top_darker_than_mid": 1.0,
+  "shelf_readable": 1.0,
+  "shelf_median": 0.17522235810756684,
+  "michael_median": 0.6744637429714203,
+  "michael_clipped_max": 0.0,
+  "bright_max": 0.0031025985663082436,
+  "checks": {
+    "no_blackout": true,
+    "hierarchy": true,
+    "library_readable": true,
+    "sculptures_not_clipped": true,
+    "lasers_restrained": true
+  },
+  "passed": true,
+  "per_frame": [
+    {
+      "file": "f_0001.png",
+      "mean": 0.20072634518146515,
+      "top": 0.10801216959953308,
+      "mid": 0.23108644783496857,
+      "shelf_median": 0.15736158192157745,
+      "shelf_contrast": 0.2998906672000885,
+      "michael_median": 0.6435745358467102,
+      "michael_clipped": 0.0,
+      "bright": 0.0001568100358422939
+    },
+    {
+      "file": "f_0012.png",
+      "mean": 0.20523753762245178,
+      "top": 0.10119445621967316,
+      "mid": 0.23866628110408783,
+      "shelf_median": 0.1751302033662796,
+      "shelf_contrast": 0.3175852298736572,
+      "michael_median": 0.6575125455856323,
+      "michael_clipped": 0.0,
+      "bright": 0.0003696236559139785
+    },
+    {
+      "file": "f_0055.png",
+      "mean": 0.20676130056381226,
+      "top": 0.10031349211931229,
+      "mid": 0.24284377694129944,
+      "shelf_median": 0.16996000707149506,
+      "shelf_contrast": 0.33143123984336853,
+      "michael_median": 0.661329448223114,
+      "michael_clipped": 0.0,
+      "bright": 0.0003360215053763441
+    },
+    {
+      "file": "f_0109.png",
+      "mean": 0.23646336793899536,
+      "top": 0.15760710835456848,
+      "mid": 0.26574066281318665,
+      "shelf_median": 0.17114196717739105,
+      "shelf_contrast": 0.31572598218917847,
+      "michael_median": 0.6927019953727722,
+      "michael_clipped": 0.0,
+      "bright": 0.0009632616487455197
+    },
+    {
+      "file": "f_0150.png",
+      "mean": 0.2486332505941391,
+      "top": 0.18959781527519226,
+      "mid": 0.272850900888443,
+      "shelf_median": 0.18312470614910126,
+      "shelf_contrast": 0.31096065044403076,
+      "michael_median": 0.7100557088851929,
+      "michael_clipped": 0.0,
+      "bright": 0.0016017025089605735
+    },
+    {
+      "file": "f_0179.png",
+      "mean": 0.25442489981651306,
+      "top": 0.20362836122512817,
+      "mid": 0.27685675024986267,
+      "shelf_median": 0.18130117654800415,
+      "shelf_contrast": 0.30892565846443176,
+      "michael_median": 0.7221035361289978,
+      "michael_clipped": 0.0,
+      "bright": 0.002228942652329749
+    },
+    {
+      "file": "f_0206.png",
+      "mean": 0.2556939423084259,
+      "top": 0.1719287633895874,
+      "mid": 0.2860061824321747,
+      "shelf_median": 0.2521207928657532,
+      "shelf_contrast": 0.41571688652038574,
+      "michael_median": 0.7027812004089355,
+      "michael_clipped": 0.0,
+      "bright": 0.002396953405017921
+    },
+    {
+      "file": "f_0262.png",
+      "mean": 0.20559176802635193,
+      "top": 0.11790468543767929,
+      "mid": 0.23557882010936737,
+      "shelf_median": 0.15350666642189026,
+      "shelf_contrast": 0.30140140652656555,
+      "michael_median": 0.657958447933197,
+      "michael_clipped": 0.0,
+      "bright": 0.0018257168458781362
+    },
+    {
+      "file": "f_0276.png",
+      "mean": 0.2081112414598465,
+      "top": 0.11719608306884766,
+      "mid": 0.24053846299648285,
+      "shelf_median": 0.1525702029466629,
+      "shelf_contrast": 0.3356967866420746,
+      "michael_median": 0.6522611975669861,
+      "michael_clipped": 0.0,
+      "bright": 0.0031025985663082436
+    },
+    {
+      "file": "f_0300.png",
+      "mean": 0.2008233219385147,
+      "top": 0.10908713936805725,
+      "mid": 0.23082511126995087,
+      "shelf_median": 0.15600627660751343,
+      "shelf_contrast": 0.29875826835632324,
+      "michael_median": 0.6443588137626648,
+      "michael_clipped": 0.0,
+      "bright": 0.00014560931899641578
+    }
+  ]
+}
