@@ -9,3 +9,5 @@ tripo/images/
 assets/models/*
 !assets/models/.gitkeep
 __pycache__/
+reference/
+previz/
