@@ -1,0 +1,648 @@
+diff --git a/blender/library-loop/.gitignore b/blender/library-loop/.gitignore
+index de99a53..116c934 100644
+--- a/blender/library-loop/.gitignore
++++ b/blender/library-loop/.gitignore
+@@ -4,6 +4,7 @@
+ renders/
+ out/
+ tripo/tasks.json
++tripo/tasks.json.tmp
+ tripo/images/
+ assets/models/*
+ !assets/models/.gitkeep
+diff --git a/blender/library-loop/scripts/import_tripo.py b/blender/library-loop/scripts/import_tripo.py
+index 75e135f..2f5c2a1 100644
+--- a/blender/library-loop/scripts/import_tripo.py
++++ b/blender/library-loop/scripts/import_tripo.py
+@@ -20,7 +20,7 @@ Options (after --)
+     --decimate 0.5      add a Decimate modifier (ratio) to every imported model — viewport relief
+     --no-save
+ """
+-import bpy, os, sys
++import bpy, bmesh, os, sys
+ from math import radians
+ from mathutils import Matrix, Vector
+ import numpy as np
+@@ -118,7 +118,13 @@ def fit(ob, height, yaw_deg, mirror):
+     co = (co - np.array([cx, cy, lo[2]], dtype=np.float32)) * scale
+     me.vertices.foreach_set("co", co.ravel())
+     if mirror:
+-        me.flip_normals()
++        bm = bmesh.new()
++        try:
++            bm.from_mesh(me)
++            bmesh.ops.reverse_faces(bm, faces=list(bm.faces))
++            bm.to_mesh(me)
++        finally:
++            bm.free()
+     me.update()
+     return scale
+ 
+diff --git a/blender/library-loop/scripts/test_tripo_batch.py b/blender/library-loop/scripts/test_tripo_batch.py
+new file mode 100644
+index 0000000..5e4c7d3
+--- /dev/null
++++ b/blender/library-loop/scripts/test_tripo_batch.py
+@@ -0,0 +1,209 @@
++"""Offline checks for spending, failure and resume boundaries. No real API keys or requests."""
++import contextlib
++import importlib.util
++import io
++import json
++from pathlib import Path
++import struct
++import tempfile
++from types import SimpleNamespace
++import unittest
++from unittest.mock import patch
++
++spec = importlib.util.spec_from_file_location('tripo_batch', Path(__file__).with_name('tripo_batch.py'))
++batch = importlib.util.module_from_spec(spec)
++spec.loader.exec_module(batch)
++
++
++class BatchSafetyTests(unittest.TestCase):
++    def setUp(self):
++        self.tmp = tempfile.TemporaryDirectory()
++        self.addCleanup(self.tmp.cleanup)
++        root = Path(self.tmp.name)
++        self.state = root / 'tasks.json'
++        manifest = root / 'assets.json'
++        manifest.write_text(json.dumps({'defaults': {'model': 'v3.1-20260211', 'geometry_quality': 'detailed'},
++                                        'assets': [{'id': 'first', 'prompt': 'angel'}, {'id': 'second', 'prompt': 'angel'}]}))
++        for name, value in {'STATE': str(self.state), 'MANIFEST': str(manifest), 'MODELS': str(root / 'models'),
++                            'IMAGES': str(root / 'images')}.items():
++            p = patch.object(batch, name, value)
++            p.start()
++            self.addCleanup(p.stop)
++        sleep = patch.object(batch.time, 'sleep')
++        sleep.start()
++        self.addCleanup(sleep.stop)
++        curl = patch.object(batch.shutil, 'which', return_value=None)
++        curl.start()
++        self.addCleanup(curl.stop)
++
++    def run_batch(self, call, *args):
++        with patch.object(batch, 'call', call), patch.object(batch, 'download') as download, \
++             patch.object(batch.sys, 'argv', ['tripo_batch.py', *args]), contextlib.redirect_stdout(io.StringIO()):
++            batch.main()
++        return download
++
++    def test_budget_stops_before_any_request(self):
++        requests = []
++        with self.assertRaisesRegex(SystemExit, 'exceed'):
++            self.run_batch(lambda *a: requests.append(a), '--max-credits', '30')
++        self.assertEqual(requests, [])
++        self.assertFalse(self.state.exists())
++
++    def test_failed_task_keeps_id_and_never_submits_next(self):
++        requests = []
++        def call(method, path, body=None):
++            requests.append((method, path))
++            if method == 'POST':
++                return {'task_id': 'task-one'}
++            return {'status': 'failed', 'error_code': 2008, 'error_message': 'original failure'}
++        with self.assertRaisesRegex(SystemExit, 'original failure'):
++            self.run_batch(call)
++        self.assertEqual([m for m, _ in requests], ['POST', 'GET'])
++        self.assertEqual(json.loads(self.state.read_text()), {'first': 'task-one'})
++        requests.clear()
++        with self.assertRaises(SystemExit):
++            self.run_batch(call)
++        self.assertEqual([m for m, _ in requests], ['GET'])
++
++    def test_uncertain_submit_is_not_repeated(self):
++        def uncertain(*args):
++            raise TimeoutError('connection lost after POST')
++        with self.assertRaises(TimeoutError):
++            self.run_batch(uncertain)
++        self.assertTrue(json.loads(self.state.read_text())['first']['submission_pending'])
++        requests = []
++        with self.assertRaisesRegex(SystemExit, 'Uncertain earlier submission'):
++            self.run_batch(lambda *a: requests.append(a))
++        self.assertEqual([request[0] for request in requests], ['GET', 'GET'])
++        self.assertTrue(requests[0][1].startswith('/account/usage/history?'))
++        self.assertEqual(requests[1][1], '/account/balance')
++
++    def test_success_completes_before_next_submission(self):
++        requests = []
++        def call(method, path, body=None):
++            requests.append((method, path))
++            if method == 'POST':
++                return {'task_id': 'task-' + str(len(requests))}
++            return {'status': 'success', 'credits_consumed': 30, 'output': {'model_url': 'https://example.invalid/model.glb'}}
++        download = self.run_batch(call, '--max-credits', '60')
++        self.assertEqual([m for m, _ in requests], ['POST', 'GET', 'POST', 'GET'])
++        self.assertEqual(download.call_count, 2)
++
++    def test_unexpected_charge_and_unknown_status_stop(self):
++        for result in [{'status': 'success', 'credits_consumed': 31, 'output': {'model_url': 'https://example.invalid/model.glb'}},
++                       {'status': 'unexpected', 'progress': 0}]:
++            with self.subTest(result=result):
++                self.state.write_text(json.dumps({'first': 'existing'}))
++                requests = []
++                def call(*args):
++                    requests.append(args)
++                    return result
++                with self.assertRaises(SystemExit):
++                    self.run_batch(call)
++                self.assertEqual(len(requests), 1)
++                self.assertEqual(requests[0][0], 'GET')
++
++    def test_timeout_preserves_id_and_stops(self):
++        self.state.write_text(json.dumps({'first': 'existing'}))
++        requests = []
++        with self.assertRaisesRegex(SystemExit, 'timed out'):
++            self.run_batch(lambda *a: requests.append(a), '--timeout', '0')
++        self.assertEqual(requests, [])
++        self.assertEqual(json.loads(self.state.read_text())['first'], 'existing')
++
++    def test_incomplete_download_never_becomes_model(self):
++        dest = Path(self.tmp.name) / 'models' / 'broken.glb'
++        with patch.object(batch.urllib.request, 'urlopen', return_value=io.BytesIO(b'not a GLB')):
++            with self.assertRaisesRegex(SystemExit, 'Invalid or incomplete'):
++                batch.download_once('https://example.invalid/model.glb', str(dest))
++        self.assertFalse(dest.exists())
++        blob = b'glTF' + struct.pack('<II', 2, 12)
++        with patch.object(batch.urllib.request, 'urlopen', return_value=io.BytesIO(blob)):
++            batch.download('https://example.invalid/model.glb', str(dest))
++        self.assertEqual(dest.read_bytes(), blob)
++
++    def test_truncated_download_retries_existing_result(self):
++        dest = Path(self.tmp.name) / 'models' / 'recover.glb'
++        blob = b'glTF' + struct.pack('<II', 2, 12)
++        with patch.object(batch.urllib.request, 'urlopen', side_effect=[io.BytesIO(blob[:8]), io.BytesIO(blob)]) as request, \
++             contextlib.redirect_stdout(io.StringIO()):
++            batch.download('https://example.invalid/model.glb', str(dest))
++        self.assertEqual(request.call_count, 2)
++        self.assertEqual(dest.read_bytes(), blob)
++
++    def test_ranged_download_retries_only_truncated_range(self):
++        class Response(io.BytesIO):
++            status = 206
++            def __init__(self, data, content_range):
++                super().__init__(data)
++                self.headers = {'Content-Range': content_range}
++        blob = b'glTF' + struct.pack('<II', 2, 20) + b'12345678'
++        responses = [Response(blob[:5], 'bytes 0-7/20'), Response(blob[:8], 'bytes 0-7/20'),
++                     Response(blob[8:16], 'bytes 8-15/20'), Response(blob[16:], 'bytes 16-19/20')]
++        dest = Path(self.tmp.name) / 'models' / 'ranged.glb'
++        with patch.object(batch, 'DOWNLOAD_CHUNK', 8), \
++             patch.object(batch.urllib.request, 'urlopen', side_effect=responses) as request, \
++             contextlib.redirect_stdout(io.StringIO()):
++            batch.download('https://example.invalid/model.glb', str(dest))
++        self.assertEqual(dest.read_bytes(), blob)
++        self.assertEqual([c.args[0].get_header('Range') for c in request.call_args_list],
++                         ['bytes=0-7','bytes=0-7','bytes=8-15','bytes=16-19'])
++        self.assertTrue(all(c.args[0].get_header('Authorization') is None for c in request.call_args_list))
++
++    def test_transport_retry_is_read_only(self):
++        error = batch.http.client.RemoteDisconnected('original network interruption')
++        with patch.object(batch, 'call_once', side_effect=[error, {'status': 'running'}]) as request, \
++             patch.object(batch, 'key', return_value='test-credential'), contextlib.redirect_stdout(io.StringIO()):
++            result = batch.call('GET', '/tasks/existing')
++        self.assertEqual(result['status'], 'running')
++        self.assertEqual(request.call_count, 2)
++        with patch.object(batch, 'call_once', side_effect=error) as request:
++            with self.assertRaises(batch.http.client.RemoteDisconnected):
++                batch.call('POST', '/generation/text-to-model', {})
++        self.assertEqual(request.call_count, 1)
++
++    def test_curl_download_does_not_receive_api_key(self):
++        blob = b'glTF' + struct.pack('<II', 2, 12)
++        dest = Path(self.tmp.name) / 'models' / 'curl.glb'
++        def transfer(command, **kwargs):
++            self.assertNotIn('TRIPO_API_KEY', kwargs['env'])
++            self.assertNotIn('test-credential', str(command))
++            Path(command[command.index('--output')+1]).write_bytes(blob)
++            return SimpleNamespace(returncode=0,stdout='http=200 bytes=12',stderr='')
++        with patch.object(batch.shutil, 'which', return_value='/usr/bin/curl'), \
++             patch.dict(batch.os.environ, {'TRIPO_API_KEY':'test-credential'}), \
++             patch.object(batch.subprocess, 'run', side_effect=transfer), contextlib.redirect_stdout(io.StringIO()):
++            batch.download('https://example.invalid/model.glb',str(dest))
++        self.assertEqual(dest.read_bytes(),blob)
++
++    def test_curl_api_uses_stdin_and_never_retries_creation(self):
++        def request(command, **kwargs):
++            self.assertNotIn('TRIPO_API_KEY',kwargs['env'])
++            self.assertNotIn('test-credential',str(command))
++            self.assertIn('Authorization: Bearer test-credential',kwargs['input'])
++            self.assertNotIn('--retry',command)
++            return SimpleNamespace(returncode=0,stdout='{"code":0,"data":{"task_id":"created"}}\n__TRIPO_HTTP__200',stderr='')
++        with patch.object(batch.shutil,'which',return_value='/usr/bin/curl'), \
++             patch.dict(batch.os.environ,{'TRIPO_API_KEY':'test-credential'}), \
++             patch.object(batch.subprocess,'run',side_effect=request):
++            result=batch.call('POST','/generation/text-to-model',{'prompt':'angel'})
++        self.assertEqual(result,{'task_id':'created'})
++
++    def test_curl_resumes_valid_partial_glb(self):
++        blob=b'glTF'+struct.pack('<II',2,20)+b'12345678'
++        dest=Path(self.tmp.name)/'models'/'resume.glb'
++        dest.parent.mkdir()
++        partial=Path(str(dest)+'.part')
++        partial.write_bytes(blob[:16])
++        def transfer(command,**kwargs):
++            self.assertIn('--continue-at',command)
++            with partial.open('ab') as handle: handle.write(blob[16:])
++            return SimpleNamespace(returncode=0,stdout='http=206 bytes=4',stderr='')
++        with patch.object(batch.shutil,'which',return_value='/usr/bin/curl'), \
++             patch.object(batch.subprocess,'run',side_effect=transfer),contextlib.redirect_stdout(io.StringIO()):
++            batch.download('https://example.invalid/model.glb',str(dest))
++        self.assertEqual(dest.read_bytes(),blob)
++
++
++if __name__ == '__main__':
++    unittest.main()
+diff --git a/blender/library-loop/scripts/tripo_batch.py b/blender/library-loop/scripts/tripo_batch.py
+index fe33f03..d250a71 100644
+--- a/blender/library-loop/scripts/tripo_batch.py
++++ b/blender/library-loop/scripts/tripo_batch.py
+@@ -13,15 +13,18 @@ import_tripo.py expects them: assets/models/<id>.glb
+ Image-to-3D instead of text-to-3D: drop a concept image at tripo/images/<id>.png (or .jpg/.webp)
+ and that asset is generated from the image (more control over the pose; 20 credits instead of 10).
+ 
+-Only the Python standard library is used. Task ids are stored in tripo/tasks.json, so a run that is
++Requests prefer system curl (HTTP/2) when available, with a Python standard-library fallback.
++Credentials are passed to curl through stdin, never its arguments or environment.
++Task ids are stored in tripo/tasks.json, so a run that is
+ interrupted (or times out) is resumed instead of paid for twice.
+ 
+-NOTE  written against https://developers.tripo3d.ai (API v3) as read on 2026-11-12, but never run
+-      against the live API from the cloud session that wrote it (no key there). If a response has
+-      an unexpected shape the script prints it and stops instead of guessing.
++NOTE  written against https://developers.tripo3d.ai (API v3), then exercised locally against the
++      CN API on 2026-11-12. If a response has an unexpected shape the script prints it and stops.
+       API credits are billed separately from a Tripo Studio (web) subscription.
+ """
+-import argparse, json, mimetypes, os, sys, time, urllib.error, urllib.request, uuid
++import argparse, http.client, json, mimetypes, os, re, shutil, struct, subprocess, sys, time, urllib.error, urllib.request, uuid
++from datetime import datetime, timezone
++from urllib.parse import urlencode
+ 
+ BASE = os.environ.get("TRIPO_API_BASE", "https://openapi.tripo3d.ai/v3")
+ HERE = os.path.dirname(os.path.abspath(__file__))
+@@ -31,6 +34,7 @@ STATE = os.path.join(ROOT, "tripo", "tasks.json")
+ IMAGES = os.path.join(ROOT, "tripo", "images")
+ MODELS = os.path.join(ROOT, "assets", "models")
+ TERMINAL_BAD = ("failed", "cancelled", "banned", "expired")
++DOWNLOAD_CHUNK = 1 << 20
+ 
+ 
+ def key():
+@@ -41,27 +45,82 @@ def key():
+ 
+ 
+ def call(method, path, body=None, raw=None, content_type=None):
++    # Read-only polling may retry transient transport errors. Creation is never retried.
++    for attempt in range(4):
++        try:
++            if raw is None and shutil.which("curl"):
++                return call_curl(method, path, body)
++            return call_once(method, path, body, raw, content_type)
++        except (urllib.error.URLError, http.client.RemoteDisconnected, http.client.IncompleteRead, TimeoutError, ConnectionError) as exc:
++            if method != "GET" or attempt == 3:
++                raise
++            print("Read-only query interrupted: %s: %s; retrying the same task in %ss" %
++                  (type(exc).__name__, str(exc).replace(key(), "[REDACTED]"), 2 ** (attempt + 1)), flush=True)
++            time.sleep(2 ** (attempt + 1))
++
++
++def call_curl(method, path, body=None):
++    """Keep the Bearer credential in stdin, never argv, files or a child's environment."""
++    command = [shutil.which("curl"), "--silent", "--show-error", "--fail-with-body", "--http2",
++               "--connect-timeout", "15", "--max-time", "90", "--request", method, "--config", "-",
++               "--url", BASE + path, "--write-out", "\n__TRIPO_HTTP__%{http_code}"]
++    proxy = urllib.request.getproxies().get("https")
++    if proxy:
++        command += ["--proxy", proxy]
++    config = 'header = ' + json.dumps("Authorization: Bearer " + key()) + '\n'
++    if body is not None:
++        config += 'header = "Content-Type: application/json"\n'
++        config += 'data = ' + json.dumps(json.dumps(body)) + '\n'
++    environment = os.environ.copy()
++    environment.pop("TRIPO_API_KEY", None)
++    result = subprocess.run(command, input=config, capture_output=True, text=True, env=environment)
++    body_text, marker, status = result.stdout.rpartition("\n__TRIPO_HTTP__")
++    if result.returncode or not marker or status != "200":
++        detail = (body_text + '\n' + result.stderr).replace(key(), "[REDACTED]")
++        message = "HTTP %s on %s %s (curl %s)\n%s" % (status or "unknown", method, path, result.returncode, detail)
++        if status in ("000", "429", "500", "502", "503", "504"):
++            raise urllib.error.URLError(message)
++        raise SystemExit(message)
++    payload = json.loads(body_text)
++    if not isinstance(payload, dict) or payload.get("code") != 0 or not isinstance(payload.get("data"), dict):
++        raise SystemExit("Unexpected response on %s %s:\n%s" % (method, path, body_text.replace(key(), "[REDACTED]")))
++    return payload["data"]
++
++
++def call_once(method, path, body=None, raw=None, content_type=None):
+     url = BASE + path
+     data = raw if raw is not None else (json.dumps(body).encode() if body is not None else None)
+-    for attempt in range(7):
+-        req = urllib.request.Request(url, data=data, method=method)
+-        req.add_header("Authorization", "Bearer " + key())
+-        if data is not None:
+-            req.add_header("Content-Type", content_type or "application/json")
+-        try:
+-            with urllib.request.urlopen(req, timeout=90) as r:
+-                payload = json.loads(r.read().decode())
+-        except urllib.error.HTTPError as e:
+-            text = e.read().decode(errors="replace")
+-            if e.code == 429:                                   # rate limit / concurrency cap
+-                wait = e.headers.get("Retry-After", "")
+-                time.sleep(int(wait) if wait.isdigit() else min(60, 2 ** attempt * 2))
+-                continue
+-            raise SystemExit("HTTP %s on %s %s\n%s" % (e.code, method, path, text))
+-        if payload.get("code") != 0 or "data" not in payload:
+-            raise SystemExit("unexpected response on %s %s:\n%s" % (method, path, json.dumps(payload, indent=2)))
+-        return payload["data"]
+-    raise SystemExit("still rate-limited after several retries: " + path)
++    req = urllib.request.Request(url, data=data, method=method)
++    req.add_header("Authorization", "Bearer " + key())
++    if data is not None:
++        req.add_header("Content-Type", content_type or "application/json")
++    try:
++        with urllib.request.urlopen(req, timeout=90) as r:
++            payload = json.loads(r.read().decode())
++    except urllib.error.HTTPError as e:
++        text = e.read().decode(errors="replace").replace(key(), "[REDACTED]")
++        raise SystemExit("HTTP %s on %s %s\n%s" % (e.code, method, path, text))
++    if not isinstance(payload, dict) or payload.get("code") != 0 or not isinstance(payload.get("data"), dict):
++        raise SystemExit("unexpected response on %s %s:\n%s" %
++                         (method, path, json.dumps(payload, indent=2).replace(key(), "[REDACTED]")))
++    return payload["data"]
++
++
++def save_state(state):
++    """Atomic journal: an ambiguous submission must never be silently submitted again."""
++    tmp = STATE + ".tmp"
++    with open(tmp, "w", encoding="utf-8") as f:
++        json.dump(state, f, indent=2)
++        f.flush()
++        os.fsync(f.fileno())
++    os.replace(tmp, STATE)
++
++
++def estimate_credits(path, payload):
++    if payload["model"] != "v3.1-20260211":
++        raise SystemExit("No verified price for model: " + payload["model"])
++    cost = 20 if path == "/generation/image-to-model" else 10
++    return cost + (10 if payload["texture"] or payload["pbr"] else 0) + (20 if payload.get("geometry_quality") == "detailed" else 0)
+ 
+ 
+ def upload(path):
+@@ -106,17 +165,108 @@ def payload_for(asset, defaults, suffix, textured, moderated):
+ 
+ 
+ def download(url, dest):
++    curl = shutil.which("curl")
++    if curl:
++        os.makedirs(os.path.dirname(dest), exist_ok=True)
++        tmp = dest + ".part"
++        command = [curl, "--silent", "--show-error", "--location", "--fail", "--http2", "--connect-timeout", "15",
++                   "--max-time", "180", "--retry", "3", "--retry-delay", "2", "--retry-all-errors",
++                   "--header", "Accept-Encoding: identity", "--output", tmp,
++                   "--write-out", "http=%{http_code} bytes=%{size_download} time=%{time_total}"]
++        if os.path.isfile(tmp):
++            with open(tmp, "rb") as f:
++                header = f.read(12)
++            if len(header) == 12 and header[:8] == b"glTF\x02\x00\x00\x00":
++                declared = struct.unpack("<I", header[8:])[0]
++                existing = os.path.getsize(tmp)
++                if existing == declared:
++                    validate_glb(tmp, dest)
++                    os.replace(tmp, dest)
++                    return
++                if 12 <= existing < declared:
++                    command += ["--continue-at", "-"]
++                    print("resume download", os.path.basename(dest), "%s/%s bytes" % (existing, declared), flush=True)
++        proxy = urllib.request.getproxies().get("https")
++        if proxy:
++            command += ["--proxy", proxy]
++        environment = os.environ.copy()
++        environment.pop("TRIPO_API_KEY", None)
++        result = subprocess.run(command + ["--url", url], capture_output=True, text=True, env=environment)
++        if result.returncode:
++            raise SystemExit("Model download failed (curl %s):\n%s" % (result.returncode, result.stderr))
++        validate_glb(tmp, dest)
++        os.replace(tmp, dest)
++        print("download", os.path.basename(dest), result.stdout, flush=True)
++        return
++    for attempt in range(4):
++        try:
++            return download_once(url, dest)
++        except (urllib.error.URLError, http.client.RemoteDisconnected, http.client.IncompleteRead, TimeoutError, ConnectionError, SystemExit) as exc:
++            if isinstance(exc, SystemExit) and not str(exc).startswith("Invalid or incomplete GLB download:"):
++                raise
++            if attempt == 3:
++                raise
++            print("Model download interrupted: %s: %s; retrying the existing result in %ss" %
++                  (type(exc).__name__, str(exc), 2 ** (attempt + 1)), flush=True)
++            time.sleep(2 ** (attempt + 1))
++
++
++def download_once(url, dest):
+     os.makedirs(os.path.dirname(dest), exist_ok=True)
+     tmp = dest + ".part"
+-    with urllib.request.urlopen(urllib.request.Request(url), timeout=600) as r, open(tmp, "wb") as f:   # signed URL: no auth header
+-        while True:
+-            chunk = r.read(1 << 20)
++    offset, total = 0, None
++    with open(tmp, "wb") as f:
++        while total is None or offset < total:
++            end = offset + DOWNLOAD_CHUNK - 1 if total is None else min(total - 1, offset + DOWNLOAD_CHUNK - 1)
++            # Signed model URL only: never forward the API Authorization header.
++            req = urllib.request.Request(url, headers={"Range": "bytes=%d-%d" % (offset, end), "Accept-Encoding": "identity"})
++            for attempt in range(4):
++                try:
++                    with urllib.request.urlopen(req, timeout=90) as r:
++                        status = getattr(r, "status", 200)
++                        headers = getattr(r, "headers", {})
++                        content_range = headers.get("Content-Range", "")
++                        if status == 206:
++                            match = re.fullmatch(r"bytes (\d+)-(\d+)/(\d+)", content_range)
++                            if not match:
++                                raise ValueError("Invalid Content-Range: " + content_range)
++                            start, last, length = map(int, match.groups())
++                            if start != offset or last != min(end, length - 1) or (total is not None and total != length):
++                                raise ValueError("Unexpected Content-Range: " + content_range)
++                            chunk = r.read(last - start + 2)
++                            if len(chunk) != last - start + 1:
++                                raise ValueError("Truncated byte range %s: received %s" % (content_range, len(chunk)))
++                            total = length
++                        elif status == 200 and offset == 0:
++                            # A server may ignore Range; validate the complete GLB below.
++                            chunk = r.read()
++                            total = len(chunk)
++                        else:
++                            raise ValueError("Unexpected download HTTP status %s at offset %s" % (status, offset))
++                    break
++                except (urllib.error.URLError, http.client.RemoteDisconnected, http.client.IncompleteRead, TimeoutError, ConnectionError, ValueError) as exc:
++                    if attempt == 3:
++                        raise
++                    print("Download range %s interrupted: %s: %s; retrying the same bytes" %
++                          (offset, type(exc).__name__, str(exc)), flush=True)
++                    time.sleep(2 ** (attempt + 1))
++            f.write(chunk)
++            offset += len(chunk)
+             if not chunk:
+                 break
+-            f.write(chunk)
++    validate_glb(tmp, dest)
+     os.replace(tmp, dest)
+ 
+ 
++def validate_glb(tmp, dest):
++    with open(tmp, "rb") as f:
++        header = f.read(12)
++    if len(header) != 12 or header[:4] != b"glTF" or struct.unpack("<II", header[4:]) != (2, os.path.getsize(tmp)):
++        declared = struct.unpack("<I", header[8:12])[0] if len(header) == 12 and header[:4] == b"glTF" else None
++        raise SystemExit("Invalid or incomplete GLB download: %s (received=%s, declared=%s)" %
++                         (os.path.basename(dest), os.path.getsize(tmp), declared))
++
++
+ def main():
+     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+     ap.add_argument("--only", default="", help="comma separated asset ids")
+@@ -126,27 +276,42 @@ def main():
+     ap.add_argument("--moderated", default="", help="comma separated ids that should use prompt_if_moderated")
+     ap.add_argument("--dry-run", action="store_true")
+     ap.add_argument("--timeout", type=int, default=1800)
++    ap.add_argument("--max-credits", type=float, default=400, help="maximum estimated credits for the entire selected plan")
+     a = ap.parse_args()
++    if a.variants < 1 or a.max_credits <= 0:
++        ap.error("--variants and --max-credits must be positive")
+ 
+-    man = json.load(open(MANIFEST, encoding="utf-8"))
++    with open(MANIFEST, encoding="utf-8") as f:
++        man = json.load(f)
+     defaults, suffix = man["defaults"], man.get("style_suffix", "")
+     only = {s for s in a.only.split(",") if s}
+     moderated = {s for s in a.moderated.split(",") if s}
+     assets = [x for x in man["assets"] if (x["id"] in only if only else (a.optional or not x.get("optional")))]
+-    state = json.load(open(STATE)) if os.path.exists(STATE) else {}
++    if only - {x["id"] for x in assets}:
++        ap.error("unknown asset id(s): " + ", ".join(sorted(only - {x["id"] for x in assets})))
++    state = {}
++    if os.path.exists(STATE):
++        with open(STATE, encoding="utf-8") as f:
++            state = json.load(f)
+ 
+-    jobs = []
++    jobs, planned = [], 0
+     for asset in assets:
+         for v in range(1, a.variants + 1):
+             name = asset["id"] if v == 1 else "%s__v%d" % (asset["id"], v)
+             dest = os.path.join(MODELS, name + ".glb")
++            path, payload, img = payload_for(asset, defaults, suffix, a.textured, asset["id"] in moderated)
++            expected = estimate_credits(path, payload)
++            planned += expected
+             if os.path.exists(dest):
+                 print("have   ", name)
+                 continue
+-            path, payload, img = payload_for(asset, defaults, suffix, a.textured, asset["id"] in moderated)
+             if v > 1:
+                 payload["model_seed"] = 1000 + v
+-            jobs.append(dict(name=name, dest=dest, path=path, payload=payload, img=img))
++            jobs.append(dict(name=name, dest=dest, path=path, payload=payload, img=img, expected=expected))
++
++    print("planned credits: %s; approved limit: %s" % (planned, a.max_credits))
++    if planned > a.max_credits:
++        raise SystemExit("Estimated credits exceed the approved limit; no tasks submitted")
+ 
+     if a.dry_run:
+         for j in jobs:
+@@ -157,47 +322,65 @@ def main():
+         print("\n%d task(s) would be created." % len(jobs))
+         return
+ 
+-    for j in jobs:                                              # submit (or pick up a stored task)
++    spent = 0.0
++    for j in jobs:                                              # complete each job before submitting the next
+         if j["name"] in state:
+             j["task"] = state[j["name"]]
++            if not isinstance(j["task"], str) or not j["task"]:
++                if isinstance(j["task"], dict) and j["task"].get("submission_pending"):
++                    start = datetime.fromtimestamp(j["task"]["created_at"] - 30, timezone.utc).isoformat()
++                    end = datetime.now(timezone.utc).isoformat()
++                    history = call("GET", "/account/usage/history?" + urlencode({"start_time": start, "end_time": end, "page_size": 100}))
++                    audit = {"asset": j["name"], "submission": j["task"], "balance": call("GET", "/account/balance"), "history": history}
++                    print("Pending submission read-only audit:\n" + json.dumps(audit, indent=2), flush=True)
++                raise SystemExit("Uncertain earlier submission for %s; reconcile it with Tripo before retrying.\n%s" %
++                                 (j["name"], json.dumps(j["task"], indent=2)))
+             print("resume ", j["name"], j["task"])
+-            continue
+-        if j["img"]:
+-            j["payload"]["input"] = upload(j["img"])
+-        data = call("POST", j["path"], j["payload"])
+-        j["task"] = data.get("task_id")
+-        if not j["task"]:
+-            raise SystemExit("no task_id in " + json.dumps(data))
+-        state[j["name"]] = j["task"]
+-        json.dump(state, open(STATE, "w"), indent=2)
+-        print("submit ", j["name"], j["task"])
+-
+-    pending, deadline, spent = list(jobs), time.time() + a.timeout, 0.0
+-    while pending and time.time() < deadline:
+-        time.sleep(4)
+-        for j in list(pending):
++        else:
++            if j["img"]:
++                j["payload"]["input"] = upload(j["img"])
++            state[j["name"]] = {"submission_pending": True, "created_at": time.time(), "estimated_credits": j["expected"]}
++            save_state(state)
++            data = call("POST", j["path"], j["payload"])
++            j["task"] = data.get("task_id")
++            if not isinstance(j["task"], str) or not j["task"]:
++                raise SystemExit("no task_id in " + json.dumps(data))
++            state[j["name"]] = j["task"]
++            save_state(state)
++            print("submit ", j["name"], j["task"], flush=True)
++
++        deadline = time.monotonic() + a.timeout
++        previous = None
++        while time.monotonic() < deadline:
++            time.sleep(4)
+             t = call("GET", "/tasks/" + j["task"])
+             st = t.get("status")
+             if st == "success":
+                 url = (t.get("output") or {}).get("model_url")
+                 if not url:
+                     raise SystemExit("success without output.model_url:\n" + json.dumps(t, indent=2))
++                os.makedirs(os.path.dirname(j["dest"]), exist_ok=True)
++                with open(j["dest"] + ".json", "w", encoding="utf-8") as f:
++                    json.dump({"task_id": j["task"], "credits_consumed": t.get("credits_consumed"),
++                               "model_url": url, "created_at": t.get("created_at"), "completed_at": t.get("completed_at")}, f, indent=2)
++                charged = t.get("credits_consumed")
++                if not isinstance(charged, (int, float)) or not 0 <= charged <= j["expected"]:
++                    raise SystemExit("Unexpected credits; remaining submissions stopped:\n" + json.dumps(t, indent=2))
+                 download(url, j["dest"])
+-                spent += float(t.get("credits_consumed") or 0)
++                spent += charged
+                 print("done   ", j["name"], "->", os.path.relpath(j["dest"], ROOT), "(%s credits)" % t.get("credits_consumed"))
+-                pending.remove(j)
++                break
+             elif st in TERMINAL_BAD:
+-                print("FAILED ", j["name"], st, t.get("error_code"), t.get("error_message"))
+-                if str(t.get("error_code")) == "2008":
+-                    print("        (content moderation) retry with:  --only %s --moderated %s" % (j["name"].split("__")[0], j["name"].split("__")[0]))
+-                state.pop(j["name"], None)
+-                json.dump(state, open(STATE, "w"), indent=2)
+-                pending.remove(j)
++                raise SystemExit("FAILED %s; task id retained, no further submissions:\n%s" % (j["name"], json.dumps(t, indent=2)))
++            elif st not in ("queued", "running"):
++                raise SystemExit("Unexpected task status; task id retained:\n" + json.dumps(t, indent=2))
+             else:
+-                print("  ...  %-28s %-8s %s%%" % (j["name"], st, t.get("progress")), end="\r")
+-    if pending:
+-        print("\nstill running (re-run the same command later to collect them, nothing is resubmitted):",
+-              ", ".join(j["name"] for j in pending))
++                progress = (st, t.get("progress"))
++                if progress != previous:
++                    print("  ...  %-28s %-8s %s%%" % (j["name"], *progress), flush=True)
++                    previous = progress
++        else:
++            raise SystemExit("Task polling timed out; task id retained, no further submissions: " + j["task"])
+     print("\ncredits consumed this run: %.0f" % spent)
+ 
+ 

@@ -1,0 +1,2 @@
+# Preserve unified diffs byte-for-byte, including their blank context lines.
+docs/history/*.patch -whitespace

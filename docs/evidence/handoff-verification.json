@@ -10,5 +10,19 @@
   "added_delivery_tools": 2,
   "secret_scan": "passed; no matched credentials or authorization URLs in publish tree",
   "blend_audit": "8 scene/backup files opened with scripts disabled; embedded texts/properties/paths checked",
-  "scope": "Technical transfer validation only; user requests an art and logic redesign."
+  "scope": "Technical transfer validation only; user requests an art and logic redesign.",
+  "historical_diffs_verified": [
+    {
+      "commit": "f345ee4",
+      "patch_bytes": 34839
+    },
+    {
+      "commit": "02c73fc",
+      "patch_bytes": 8877
+    },
+    {
+      "commit": "f189263",
+      "patch_bytes": 14952
+    }
+  ]
 }
