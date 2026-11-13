@@ -1,0 +1,1976 @@
+{
+  "png_frames_checked": 300,
+  "video_sample_frames": [
+    1,
+    7,
+    21,
+    150,
+    173,
+    277,
+    300
+  ],
+  "frame_dimensions": [
+    1920,
+    744
+  ],
+  "unexpected_blank_frames": [],
+  "authored_dark_cue_frames": [
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    29,
+    30,
+    31,
+    32,
+    47,
+    48,
+    49,
+    50,
+    51,
+    52,
+    61,
+    62,
+    63,
+    64,
+    79,
+    80,
+    81,
+    82,
+    83,
+    84,
+    93,
+    94,
+    95,
+    96,
+    111,
+    112,
+    113,
+    114,
+    115,
+    116,
+    125,
+    126,
+    127,
+    128,
+    143,
+    144,
+    145,
+    146,
+    147,
+    148,
+    157,
+    158,
+    159,
+    160,
+    175,
+    176,
+    177,
+    178,
+    179,
+    180,
+    189,
+    190,
+    191,
+    192,
+    207,
+    208,
+    209,
+    210,
+    211,
+    212,
+    221,
+    222,
+    223,
+    224,
+    239,
+    240,
+    241,
+    242,
+    243,
+    244,
+    253,
+    254,
+    255,
+    256,
+    271,
+    272,
+    273,
+    274,
+    275,
+    276,
+    285,
+    286,
+    287,
+    288,
+    289,
+    290,
+    291,
+    292,
+    293,
+    294,
+    295,
+    296,
+    297,
+    298,
+    299,
+    300
+  ],
+  "fully_black_frames": [],
+  "video_sample_comparisons": [
+    {
+      "frame": 1,
+      "rgb_rmse_in_blender": 0.0050692567601799965,
+      "source_mean": 0.034482747316360474,
+      "decoded_mean": 0.03424355760216713
+    },
+    {
+      "frame": 7,
+      "rgb_rmse_in_blender": 0.006755637004971504,
+      "source_mean": 0.06015962362289429,
+      "decoded_mean": 0.06002391129732132
+    },
+    {
+      "frame": 21,
+      "rgb_rmse_in_blender": 0.007425236981362104,
+      "source_mean": 0.02533344365656376,
+      "decoded_mean": 0.025246862322092056
+    },
+    {
+      "frame": 150,
+      "rgb_rmse_in_blender": 0.006237945519387722,
+      "source_mean": 0.01910724863409996,
+      "decoded_mean": 0.019258281216025352
+    },
+    {
+      "frame": 173,
+      "rgb_rmse_in_blender": 0.003963700029999018,
+      "source_mean": 0.012829175218939781,
+      "decoded_mean": 0.012893364764750004
+    },
+    {
+      "frame": 277,
+      "rgb_rmse_in_blender": 0.00711611146107316,
+      "source_mean": 0.024606510996818542,
+      "decoded_mean": 0.024524586275219917
+    },
+    {
+      "frame": 300,
+      "rgb_rmse_in_blender": 0.002081523183733225,
+      "source_mean": 0.0025378221180289984,
+      "decoded_mean": 0.0022548625711351633
+    }
+  ],
+  "audio": {
+    "sample_rate": 48000.0,
+    "channels": 2,
+    "decoded_samples": 480256,
+    "rms": 0.3811361491680145,
+    "peak": 1.083526372909546
+  },
+  "frame_brightness": [
+    {
+      "frame": 1,
+      "mean_rgb": 0.034482747316360474,
+      "max_rgb": 0.9450981020927429,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 2,
+      "mean_rgb": 0.028900695964694023,
+      "max_rgb": 0.9333333969116211,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 3,
+      "mean_rgb": 0.023648032918572426,
+      "max_rgb": 0.9333333969116211,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 4,
+      "mean_rgb": 0.019293269142508507,
+      "max_rgb": 0.9372549653053284,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 5,
+      "mean_rgb": 0.015597300603985786,
+      "max_rgb": 0.9411765336990356,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 6,
+      "mean_rgb": 0.012544931843876839,
+      "max_rgb": 0.9411765336990356,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 7,
+      "mean_rgb": 0.06015962362289429,
+      "max_rgb": 0.9294118285179138,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 8,
+      "mean_rgb": 0.0484352707862854,
+      "max_rgb": 0.9294118285179138,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 9,
+      "mean_rgb": 0.03769179806113243,
+      "max_rgb": 0.9294118285179138,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 10,
+      "mean_rgb": 0.029193369671702385,
+      "max_rgb": 0.9294118285179138,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 11,
+      "mean_rgb": 0.021089522168040276,
+      "max_rgb": 0.9411765336990356,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 12,
+      "mean_rgb": 0.016181983053684235,
+      "max_rgb": 0.9411765336990356,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 13,
+      "mean_rgb": 0.012303009629249573,
+      "max_rgb": 0.9450981020927429,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 14,
+      "mean_rgb": 0.009017908945679665,
+      "max_rgb": 0.9294118285179138,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 15,
+      "mean_rgb": 0.0022685301955789328,
+      "max_rgb": 0.9333333969116211,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 16,
+      "mean_rgb": 0.00303247501142323,
+      "max_rgb": 0.9333333969116211,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 17,
+      "mean_rgb": 0.003032473148778081,
+      "max_rgb": 0.9333333969116211,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 18,
+      "mean_rgb": 0.0030324740801006556,
+      "max_rgb": 0.9333333969116211,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 19,
+      "mean_rgb": 0.0033099825959652662,
+      "max_rgb": 0.9333333969116211,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 20,
+      "mean_rgb": 0.0033097616396844387,
+      "max_rgb": 0.9333333969116211,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 21,
+      "mean_rgb": 0.02533344365656376,
+      "max_rgb": 0.9490196704864502,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 22,
+      "mean_rgb": 0.019915306940674782,
+      "max_rgb": 0.9529412388801575,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 23,
+      "mean_rgb": 0.014787155203521252,
+      "max_rgb": 0.9490196704864502,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 24,
+      "mean_rgb": 0.011431957595050335,
+      "max_rgb": 0.9529412388801575,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 25,
+      "mean_rgb": 0.008860639296472073,
+      "max_rgb": 0.9529412388801575,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 26,
+      "mean_rgb": 0.007738274056464434,
+      "max_rgb": 0.9568628072738647,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 27,
+      "mean_rgb": 0.006286650896072388,
+      "max_rgb": 0.960784375667572,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 28,
+      "mean_rgb": 0.004614179488271475,
+      "max_rgb": 0.960784375667572,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 29,
+      "mean_rgb": 0.0027079505380243063,
+      "max_rgb": 0.9294118285179138,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 30,
+      "mean_rgb": 0.002707951469346881,
+      "max_rgb": 0.9294118285179138,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 31,
+      "mean_rgb": 0.0011768544791266322,
+      "max_rgb": 0.9333333969116211,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 32,
+      "mean_rgb": 0.0011768544791266322,
+      "max_rgb": 0.9333333969116211,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 33,
+      "mean_rgb": 0.032256074249744415,
+      "max_rgb": 0.9450981020927429,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 34,
+      "mean_rgb": 0.02668909542262554,
+      "max_rgb": 0.9333333969116211,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 35,
+      "mean_rgb": 0.021614186465740204,
+      "max_rgb": 0.9294118285179138,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 36,
+      "mean_rgb": 0.01728222891688347,
+      "max_rgb": 0.9294118285179138,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 37,
+      "mean_rgb": 0.014121338725090027,
+      "max_rgb": 0.9333333969116211,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 38,
+      "mean_rgb": 0.011075833812355995,
+      "max_rgb": 0.9372549653053284,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 39,
+      "mean_rgb": 0.05933086946606636,
+      "max_rgb": 0.9294118285179138,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 40,
+      "mean_rgb": 0.04867878928780556,
+      "max_rgb": 0.9294118285179138,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 41,
+      "mean_rgb": 0.038750261068344116,
+      "max_rgb": 0.9294118285179138,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 42,
+      "mean_rgb": 0.02963990904390812,
+      "max_rgb": 0.9294118285179138,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 43,
+      "mean_rgb": 0.020753799006342888,
+      "max_rgb": 0.9333333969116211,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 44,
+      "mean_rgb": 0.01613384298980236,
+      "max_rgb": 0.9411765336990356,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 45,
+      "mean_rgb": 0.013698641210794449,
+      "max_rgb": 0.9411765336990356,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 46,
+      "mean_rgb": 0.010684770531952381,
+      "max_rgb": 0.9450981020927429,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 47,
+      "mean_rgb": 0.003309765364974737,
+      "max_rgb": 0.9333333969116211,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 48,
+      "mean_rgb": 0.003309763502329588,
+      "max_rgb": 0.9333333969116211,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 49,
+      "mean_rgb": 0.003309763502329588,
+      "max_rgb": 0.9333333969116211,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 50,
+      "mean_rgb": 0.003309763502329588,
+      "max_rgb": 0.9333333969116211,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 51,
+      "mean_rgb": 0.003032473148778081,
+      "max_rgb": 0.9333333969116211,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 52,
+      "mean_rgb": 0.0030324740801006556,
+      "max_rgb": 0.9333333969116211,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 53,
+      "mean_rgb": 0.02441793866455555,
+      "max_rgb": 0.9490196704864502,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 54,
+      "mean_rgb": 0.018993491306900978,
+      "max_rgb": 0.9333333969116211,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 55,
+      "mean_rgb": 0.01408451609313488,
+      "max_rgb": 0.9333333969116211,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 56,
+      "mean_rgb": 0.010211325250566006,
+      "max_rgb": 0.9529412388801575,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 57,
+      "mean_rgb": 0.007637420203536749,
+      "max_rgb": 0.9568628072738647,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 58,
+      "mean_rgb": 0.005686067044734955,
+      "max_rgb": 0.9568628072738647,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 59,
+      "mean_rgb": 0.004857711493968964,
+      "max_rgb": 0.960784375667572,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 60,
+      "mean_rgb": 0.004612750839442015,
+      "max_rgb": 0.960784375667572,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 61,
+      "mean_rgb": 0.0027079477440565825,
+      "max_rgb": 0.9294118285179138,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 62,
+      "mean_rgb": 0.002707948675379157,
+      "max_rgb": 0.9294118285179138,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 63,
+      "mean_rgb": 0.0024346988648176193,
+      "max_rgb": 0.9254902601242065,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 64,
+      "mean_rgb": 0.0030324722174555063,
+      "max_rgb": 0.9333333969116211,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 65,
+      "mean_rgb": 0.0340200699865818,
+      "max_rgb": 0.9450981020927429,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 66,
+      "mean_rgb": 0.028739431872963905,
+      "max_rgb": 0.9333333969116211,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 67,
+      "mean_rgb": 0.023795846849679947,
+      "max_rgb": 0.9333333969116211,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 68,
+      "mean_rgb": 0.018661033362150192,
+      "max_rgb": 0.9333333969116211,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 69,
+      "mean_rgb": 0.014989028684794903,
+      "max_rgb": 0.9333333969116211,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 70,
+      "mean_rgb": 0.011955492198467255,
+      "max_rgb": 0.9372549653053284,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 71,
+      "mean_rgb": 0.06007010117173195,
+      "max_rgb": 0.9294118285179138,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 72,
+      "mean_rgb": 0.04881637915968895,
+      "max_rgb": 0.9294118285179138,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 73,
+      "mean_rgb": 0.03892352432012558,
+      "max_rgb": 0.9294118285179138,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 74,
+      "mean_rgb": 0.03046322986483574,
+      "max_rgb": 0.9294118285179138,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 75,
+      "mean_rgb": 0.020919829607009888,
+      "max_rgb": 0.9411765336990356,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 76,
+      "mean_rgb": 0.01604321040213108,
+      "max_rgb": 0.9411765336990356,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 77,
+      "mean_rgb": 0.012188777327537537,
+      "max_rgb": 0.9450981020927429,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 78,
+      "mean_rgb": 0.009186645038425922,
+      "max_rgb": 0.9450981020927429,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 79,
+      "mean_rgb": 0.001871535088866949,
+      "max_rgb": 0.9294118285179138,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 80,
+      "mean_rgb": 0.0016118530184030533,
+      "max_rgb": 0.9294118285179138,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 81,
+      "mean_rgb": 0.0008843524265103042,
+      "max_rgb": 0.9294118285179138,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 82,
+      "mean_rgb": 0.0008843533578328788,
+      "max_rgb": 0.9294118285179138,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 83,
+      "mean_rgb": 0.0008843533578328788,
+      "max_rgb": 0.9294118285179138,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 84,
+      "mean_rgb": 0.0016496647149324417,
+      "max_rgb": 0.9294118285179138,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 85,
+      "mean_rgb": 0.023656310513615608,
+      "max_rgb": 0.9490196704864502,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 86,
+      "mean_rgb": 0.01849208027124405,
+      "max_rgb": 0.9490196704864502,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 87,
+      "mean_rgb": 0.014810323715209961,
+      "max_rgb": 0.9490196704864502,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 88,
+      "mean_rgb": 0.011456401087343693,
+      "max_rgb": 0.9490196704864502,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 89,
+      "mean_rgb": 0.00888539757579565,
+      "max_rgb": 0.9529412388801575,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 90,
+      "mean_rgb": 0.006939814891666174,
+      "max_rgb": 0.9568628072738647,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 91,
+      "mean_rgb": 0.005488841328769922,
+      "max_rgb": 0.9568628072738647,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 92,
+      "mean_rgb": 0.004433738999068737,
+      "max_rgb": 0.9568628072738647,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 93,
+      "mean_rgb": 0.0025378221180289984,
+      "max_rgb": 0.9372549653053284,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 94,
+      "mean_rgb": 0.002268529264256358,
+      "max_rgb": 0.9333333969116211,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 95,
+      "mean_rgb": 0.003032473148778081,
+      "max_rgb": 0.9333333969116211,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 96,
+      "mean_rgb": 0.003032744862139225,
+      "max_rgb": 0.9333333969116211,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 97,
+      "mean_rgb": 0.033998504281044006,
+      "max_rgb": 0.9450981020927429,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 98,
+      "mean_rgb": 0.027891002595424652,
+      "max_rgb": 0.9333333969116211,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 99,
+      "mean_rgb": 0.02295602858066559,
+      "max_rgb": 0.9372549653053284,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 100,
+      "mean_rgb": 0.01864783838391304,
+      "max_rgb": 0.9372549653053284,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 101,
+      "mean_rgb": 0.014989202842116356,
+      "max_rgb": 0.9372549653053284,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 102,
+      "mean_rgb": 0.011964983306825161,
+      "max_rgb": 0.9372549653053284,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 103,
+      "mean_rgb": 0.0591876246035099,
+      "max_rgb": 0.9294118285179138,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 104,
+      "mean_rgb": 0.04876948893070221,
+      "max_rgb": 0.9294118285179138,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 105,
+      "mean_rgb": 0.038888804614543915,
+      "max_rgb": 0.9294118285179138,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 106,
+      "mean_rgb": 0.029641924425959587,
+      "max_rgb": 0.9294118285179138,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 107,
+      "mean_rgb": 0.020177289843559265,
+      "max_rgb": 0.9333333969116211,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 108,
+      "mean_rgb": 0.015309102833271027,
+      "max_rgb": 0.9372549653053284,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 109,
+      "mean_rgb": 0.012218642048537731,
+      "max_rgb": 0.9411765336990356,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 110,
+      "mean_rgb": 0.008589682169258595,
+      "max_rgb": 0.9450981020927429,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 111,
+      "mean_rgb": 0.0010383406188338995,
+      "max_rgb": 0.9215686917304993,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 112,
+      "mean_rgb": 0.0023933444172143936,
+      "max_rgb": 0.9294118285179138,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 113,
+      "mean_rgb": 0.002393075032159686,
+      "max_rgb": 0.9294118285179138,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 114,
+      "mean_rgb": 0.001649663783609867,
+      "max_rgb": 0.9294118285179138,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 115,
+      "mean_rgb": 0.002268529264256358,
+      "max_rgb": 0.9333333969116211,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 116,
+      "mean_rgb": 0.0030327439308166504,
+      "max_rgb": 0.9333333969116211,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 117,
+      "mean_rgb": 0.02534380927681923,
+      "max_rgb": 0.9490196704864502,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 118,
+      "mean_rgb": 0.01992100477218628,
+      "max_rgb": 0.9490196704864502,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 119,
+      "mean_rgb": 0.01560663990676403,
+      "max_rgb": 0.9529412388801575,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 120,
+      "mean_rgb": 0.012252481654286385,
+      "max_rgb": 0.9568628072738647,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 121,
+      "mean_rgb": 0.009682903066277504,
+      "max_rgb": 0.9568628072738647,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 122,
+      "mean_rgb": 0.006948557216674089,
+      "max_rgb": 0.9568628072738647,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 123,
+      "mean_rgb": 0.005495554301887751,
+      "max_rgb": 0.9568628072738647,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 124,
+      "mean_rgb": 0.0036313727032393217,
+      "max_rgb": 0.960784375667572,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 125,
+      "mean_rgb": 0.0025024013593792915,
+      "max_rgb": 0.9333333969116211,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 126,
+      "mean_rgb": 0.0025024013593792915,
+      "max_rgb": 0.9333333969116211,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 127,
+      "mean_rgb": 0.0025024013593792915,
+      "max_rgb": 0.9333333969116211,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 128,
+      "mean_rgb": 0.0025027384981513023,
+      "max_rgb": 0.9333333969116211,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 129,
+      "mean_rgb": 0.034336309880018234,
+      "max_rgb": 0.9450981020927429,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 130,
+      "mean_rgb": 0.028786903247237206,
+      "max_rgb": 0.9333333969116211,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 131,
+      "mean_rgb": 0.023141955956816673,
+      "max_rgb": 0.9372549653053284,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 132,
+      "mean_rgb": 0.018546197563409805,
+      "max_rgb": 0.9372549653053284,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 133,
+      "mean_rgb": 0.015554971992969513,
+      "max_rgb": 0.9411765336990356,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 134,
+      "mean_rgb": 0.01251656748354435,
+      "max_rgb": 0.9411765336990356,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 135,
+      "mean_rgb": 0.06074638292193413,
+      "max_rgb": 0.9294118285179138,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 136,
+      "mean_rgb": 0.04865368828177452,
+      "max_rgb": 0.9254902601242065,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 137,
+      "mean_rgb": 0.03812340274453163,
+      "max_rgb": 0.9254902601242065,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 138,
+      "mean_rgb": 0.030449898913502693,
+      "max_rgb": 0.9294118285179138,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 139,
+      "mean_rgb": 0.021823329851031303,
+      "max_rgb": 0.9411765336990356,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 140,
+      "mean_rgb": 0.016935141757130623,
+      "max_rgb": 0.9411765336990356,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 141,
+      "mean_rgb": 0.013071514666080475,
+      "max_rgb": 0.9450981020927429,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 142,
+      "mean_rgb": 0.010060256347060204,
+      "max_rgb": 0.9450981020927429,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 143,
+      "mean_rgb": 0.003310135332867503,
+      "max_rgb": 0.9333333969116211,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 144,
+      "mean_rgb": 0.0033097616396844387,
+      "max_rgb": 0.9333333969116211,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 145,
+      "mean_rgb": 0.003309763502329588,
+      "max_rgb": 0.9333333969116211,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 146,
+      "mean_rgb": 0.0033097625710070133,
+      "max_rgb": 0.9333333969116211,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 147,
+      "mean_rgb": 0.0033097625710070133,
+      "max_rgb": 0.9333333969116211,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 148,
+      "mean_rgb": 0.0033097625710070133,
+      "max_rgb": 0.9333333969116211,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 149,
+      "mean_rgb": 0.025149362161755562,
+      "max_rgb": 0.9490196704864502,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 150,
+      "mean_rgb": 0.01910724863409996,
+      "max_rgb": 0.9372549653053284,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 151,
+      "mean_rgb": 0.01402260921895504,
+      "max_rgb": 0.9372549653053284,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 152,
+      "mean_rgb": 0.01092422567307949,
+      "max_rgb": 0.9529412388801575,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 153,
+      "mean_rgb": 0.008937316946685314,
+      "max_rgb": 0.9529412388801575,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 154,
+      "mean_rgb": 0.006983669009059668,
+      "max_rgb": 0.9568628072738647,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 155,
+      "mean_rgb": 0.0056526572443544865,
+      "max_rgb": 0.960784375667572,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 156,
+      "mean_rgb": 0.004587224684655666,
+      "max_rgb": 0.960784375667572,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 157,
+      "mean_rgb": 0.0026608945336192846,
+      "max_rgb": 0.9294118285179138,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 158,
+      "mean_rgb": 0.00266089360229671,
+      "max_rgb": 0.9294118285179138,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 159,
+      "mean_rgb": 0.00266089360229671,
+      "max_rgb": 0.9294118285179138,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 160,
+      "mean_rgb": 0.0019510287092998624,
+      "max_rgb": 0.9294118285179138,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 161,
+      "mean_rgb": 0.03300567343831062,
+      "max_rgb": 0.9450981020927429,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 162,
+      "mean_rgb": 0.027432771399617195,
+      "max_rgb": 0.9333333969116211,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 163,
+      "mean_rgb": 0.022459927946329117,
+      "max_rgb": 0.9333333969116211,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 164,
+      "mean_rgb": 0.018121259286999702,
+      "max_rgb": 0.9333333969116211,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 165,
+      "mean_rgb": 0.014438997954130173,
+      "max_rgb": 0.9333333969116211,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 166,
+      "mean_rgb": 0.011396892368793488,
+      "max_rgb": 0.9372549653053284,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 167,
+      "mean_rgb": 0.05971740558743477,
+      "max_rgb": 0.9254902601242065,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 168,
+      "mean_rgb": 0.048432622104883194,
+      "max_rgb": 0.9294118285179138,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 169,
+      "mean_rgb": 0.03913458064198494,
+      "max_rgb": 0.9254902601242065,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 170,
+      "mean_rgb": 0.030643010511994362,
+      "max_rgb": 0.9333333969116211,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 171,
+      "mean_rgb": 0.02250364050269127,
+      "max_rgb": 0.9411765336990356,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 172,
+      "mean_rgb": 0.017601633444428444,
+      "max_rgb": 0.9411765336990356,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 173,
+      "mean_rgb": 0.012829175218939781,
+      "max_rgb": 0.9333333969116211,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 174,
+      "mean_rgb": 0.009808922186493874,
+      "max_rgb": 0.9333333969116211,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 175,
+      "mean_rgb": 0.0024346988648176193,
+      "max_rgb": 0.9254902601242065,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 176,
+      "mean_rgb": 0.003032470354810357,
+      "max_rgb": 0.9333333969116211,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 177,
+      "mean_rgb": 0.0026608954649418592,
+      "max_rgb": 0.9294118285179138,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 178,
+      "mean_rgb": 0.00266089360229671,
+      "max_rgb": 0.9294118285179138,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 179,
+      "mean_rgb": 0.00266089360229671,
+      "max_rgb": 0.9294118285179138,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 180,
+      "mean_rgb": 0.0018715369515120983,
+      "max_rgb": 0.9294118285179138,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 181,
+      "mean_rgb": 0.024149686098098755,
+      "max_rgb": 0.9490196704864502,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 182,
+      "mean_rgb": 0.01868019811809063,
+      "max_rgb": 0.9490196704864502,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 183,
+      "mean_rgb": 0.014323895797133446,
+      "max_rgb": 0.9529412388801575,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 184,
+      "mean_rgb": 0.010934322141110897,
+      "max_rgb": 0.9529412388801575,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 185,
+      "mean_rgb": 0.00913676805794239,
+      "max_rgb": 0.9568628072738647,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 186,
+      "mean_rgb": 0.007166523486375809,
+      "max_rgb": 0.960784375667572,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 187,
+      "mean_rgb": 0.006353794131428003,
+      "max_rgb": 0.960784375667572,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 188,
+      "mean_rgb": 0.00527813658118248,
+      "max_rgb": 0.960784375667572,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 189,
+      "mean_rgb": 0.0033101309090852737,
+      "max_rgb": 0.9333333969116211,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 190,
+      "mean_rgb": 0.0030328575521707535,
+      "max_rgb": 0.9333333969116211,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 191,
+      "mean_rgb": 0.0030328575521707535,
+      "max_rgb": 0.9333333969116211,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 192,
+      "mean_rgb": 0.0022334137465804815,
+      "max_rgb": 0.9333333969116211,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 193,
+      "mean_rgb": 0.0334310308098793,
+      "max_rgb": 0.9333333969116211,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 194,
+      "mean_rgb": 0.02783750556409359,
+      "max_rgb": 0.9372549653053284,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 195,
+      "mean_rgb": 0.0221666619181633,
+      "max_rgb": 0.9372549653053284,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 196,
+      "mean_rgb": 0.017017245292663574,
+      "max_rgb": 0.9372549653053284,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 197,
+      "mean_rgb": 0.0135888596996665,
+      "max_rgb": 0.9372549653053284,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 198,
+      "mean_rgb": 0.01054210215806961,
+      "max_rgb": 0.9372549653053284,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 199,
+      "mean_rgb": 0.05976561829447746,
+      "max_rgb": 0.9294118285179138,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 200,
+      "mean_rgb": 0.04913691058754921,
+      "max_rgb": 0.9254902601242065,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 201,
+      "mean_rgb": 0.038345761597156525,
+      "max_rgb": 0.9294118285179138,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 202,
+      "mean_rgb": 0.029842276126146317,
+      "max_rgb": 0.9294118285179138,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 203,
+      "mean_rgb": 0.020286431536078453,
+      "max_rgb": 0.9372549653053284,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 204,
+      "mean_rgb": 0.015385249629616737,
+      "max_rgb": 0.9372549653053284,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 205,
+      "mean_rgb": 0.012262698262929916,
+      "max_rgb": 0.9450981020927429,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 206,
+      "mean_rgb": 0.009241355583071709,
+      "max_rgb": 0.9490196704864502,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 207,
+      "mean_rgb": 0.001871537882834673,
+      "max_rgb": 0.9294118285179138,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 208,
+      "mean_rgb": 0.001871537882834673,
+      "max_rgb": 0.9294118285179138,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 209,
+      "mean_rgb": 0.001871537882834673,
+      "max_rgb": 0.9294118285179138,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 210,
+      "mean_rgb": 0.0011364379897713661,
+      "max_rgb": 0.9333333969116211,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 211,
+      "mean_rgb": 0.0011364370584487915,
+      "max_rgb": 0.9333333969116211,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 212,
+      "mean_rgb": 0.0011364361271262169,
+      "max_rgb": 0.9333333969116211,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 213,
+      "mean_rgb": 0.022880004718899727,
+      "max_rgb": 0.9490196704864502,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 214,
+      "mean_rgb": 0.017400402575731277,
+      "max_rgb": 0.9490196704864502,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 215,
+      "mean_rgb": 0.013035817071795464,
+      "max_rgb": 0.9529412388801575,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 216,
+      "mean_rgb": 0.009637994691729546,
+      "max_rgb": 0.9529412388801575,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 217,
+      "mean_rgb": 0.00838333461433649,
+      "max_rgb": 0.9568628072738647,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 218,
+      "mean_rgb": 0.006409273482859135,
+      "max_rgb": 0.9568628072738647,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 219,
+      "mean_rgb": 0.004930571187287569,
+      "max_rgb": 0.9568628072738647,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 220,
+      "mean_rgb": 0.0032607943285256624,
+      "max_rgb": 0.9568628072738647,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 221,
+      "mean_rgb": 0.0019513304578140378,
+      "max_rgb": 0.9294118285179138,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 222,
+      "mean_rgb": 0.0022691036574542522,
+      "max_rgb": 0.9333333969116211,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 223,
+      "mean_rgb": 0.0030328594148159027,
+      "max_rgb": 0.9333333969116211,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 224,
+      "mean_rgb": 0.0030328594148159027,
+      "max_rgb": 0.9333333969116211,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 225,
+      "mean_rgb": 0.03395634889602661,
+      "max_rgb": 0.9450981020927429,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 226,
+      "mean_rgb": 0.028351908549666405,
+      "max_rgb": 0.9333333969116211,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 227,
+      "mean_rgb": 0.023350311443209648,
+      "max_rgb": 0.9333333969116211,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 228,
+      "mean_rgb": 0.018984872847795486,
+      "max_rgb": 0.9333333969116211,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 229,
+      "mean_rgb": 0.015280632302165031,
+      "max_rgb": 0.9333333969116211,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 230,
+      "mean_rgb": 0.012845050543546677,
+      "max_rgb": 0.9411765336990356,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 231,
+      "mean_rgb": 0.06135965511202812,
+      "max_rgb": 0.9294118285179138,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 232,
+      "mean_rgb": 0.05002346262335777,
+      "max_rgb": 0.9294118285179138,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 233,
+      "mean_rgb": 0.03936564922332764,
+      "max_rgb": 0.9294118285179138,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 234,
+      "mean_rgb": 0.03004826232790947,
+      "max_rgb": 0.9254902601242065,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 235,
+      "mean_rgb": 0.02110159955918789,
+      "max_rgb": 0.9411765336990356,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 236,
+      "mean_rgb": 0.01619071513414383,
+      "max_rgb": 0.9411765336990356,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 237,
+      "mean_rgb": 0.012308815494179726,
+      "max_rgb": 0.9411765336990356,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 238,
+      "mean_rgb": 0.01071677915751934,
+      "max_rgb": 0.9490196704864502,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 239,
+      "mean_rgb": 0.003310132771730423,
+      "max_rgb": 0.9333333969116211,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 240,
+      "mean_rgb": 0.0025027990341186523,
+      "max_rgb": 0.9333333969116211,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 241,
+      "mean_rgb": 0.0025027981027960777,
+      "max_rgb": 0.9333333969116211,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 242,
+      "mean_rgb": 0.002502799965441227,
+      "max_rgb": 0.9333333969116211,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 243,
+      "mean_rgb": 0.0025027981027960777,
+      "max_rgb": 0.9333333969116211,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 244,
+      "mean_rgb": 0.002502799965441227,
+      "max_rgb": 0.9333333969116211,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 245,
+      "mean_rgb": 0.02473619021475315,
+      "max_rgb": 0.9490196704864502,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 246,
+      "mean_rgb": 0.020093409344553947,
+      "max_rgb": 0.9529412388801575,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 247,
+      "mean_rgb": 0.015093094669282436,
+      "max_rgb": 0.9529412388801575,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 248,
+      "mean_rgb": 0.011711020022630692,
+      "max_rgb": 0.9568628072738647,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 249,
+      "mean_rgb": 0.009118488058447838,
+      "max_rgb": 0.9568628072738647,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 250,
+      "mean_rgb": 0.007153310813009739,
+      "max_rgb": 0.960784375667572,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 251,
+      "mean_rgb": 0.0054088169708848,
+      "max_rgb": 0.9411765336990356,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 252,
+      "mean_rgb": 0.004987199790775776,
+      "max_rgb": 0.9490196704864502,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 253,
+      "mean_rgb": 0.0030328547582030296,
+      "max_rgb": 0.9333333969116211,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 254,
+      "mean_rgb": 0.003310132771730423,
+      "max_rgb": 0.9333333969116211,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 255,
+      "mean_rgb": 0.003310132771730423,
+      "max_rgb": 0.9333333969116211,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 256,
+      "mean_rgb": 0.0033104801550507545,
+      "max_rgb": 0.9333333969116211,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 257,
+      "mean_rgb": 0.03373146057128906,
+      "max_rgb": 0.9450981020927429,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 258,
+      "mean_rgb": 0.028132956475019455,
+      "max_rgb": 0.9333333969116211,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 259,
+      "mean_rgb": 0.02313540130853653,
+      "max_rgb": 0.9333333969116211,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 260,
+      "mean_rgb": 0.018778173252940178,
+      "max_rgb": 0.9372549653053284,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 261,
+      "mean_rgb": 0.015081053599715233,
+      "max_rgb": 0.9372549653053284,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 262,
+      "mean_rgb": 0.012840190902352333,
+      "max_rgb": 0.9411765336990356,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 263,
+      "mean_rgb": 0.061362769454717636,
+      "max_rgb": 0.9294118285179138,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 264,
+      "mean_rgb": 0.05003029480576515,
+      "max_rgb": 0.9294118285179138,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 265,
+      "mean_rgb": 0.03937278315424919,
+      "max_rgb": 0.9294118285179138,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 266,
+      "mean_rgb": 0.030851706862449646,
+      "max_rgb": 0.9333333969116211,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 267,
+      "mean_rgb": 0.02188275195658207,
+      "max_rgb": 0.9450981020927429,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 268,
+      "mean_rgb": 0.017010774463415146,
+      "max_rgb": 0.9411765336990356,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 269,
+      "mean_rgb": 0.013127491809427738,
+      "max_rgb": 0.9411765336990356,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 270,
+      "mean_rgb": 0.00928971916437149,
+      "max_rgb": 0.9450981020927429,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 271,
+      "mean_rgb": 0.0019164795521646738,
+      "max_rgb": 0.9333333969116211,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 272,
+      "mean_rgb": 0.0019164812983945012,
+      "max_rgb": 0.9333333969116211,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 273,
+      "mean_rgb": 0.0019164812983945012,
+      "max_rgb": 0.9333333969116211,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 274,
+      "mean_rgb": 0.0019164804834872484,
+      "max_rgb": 0.9333333969116211,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 275,
+      "mean_rgb": 0.0025023992639034986,
+      "max_rgb": 0.9333333969116211,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 276,
+      "mean_rgb": 0.002502685645595193,
+      "max_rgb": 0.9333333969116211,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 277,
+      "mean_rgb": 0.024606510996818542,
+      "max_rgb": 0.9490196704864502,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 278,
+      "mean_rgb": 0.019171571359038353,
+      "max_rgb": 0.9490196704864502,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 279,
+      "mean_rgb": 0.015665320679545403,
+      "max_rgb": 0.9529412388801575,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 280,
+      "mean_rgb": 0.012302634306252003,
+      "max_rgb": 0.9568628072738647,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 281,
+      "mean_rgb": 0.009725621901452541,
+      "max_rgb": 0.9568628072738647,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 282,
+      "mean_rgb": 0.007158763241022825,
+      "max_rgb": 0.9568628072738647,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 283,
+      "mean_rgb": 0.004888273775577545,
+      "max_rgb": 0.9568628072738647,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 284,
+      "mean_rgb": 0.003820679849013686,
+      "max_rgb": 0.960784375667572,
+      "expected_dark_pause": false
+    },
+    {
+      "frame": 285,
+      "mean_rgb": 0.0019164804834872484,
+      "max_rgb": 0.9333333969116211,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 286,
+      "mean_rgb": 0.0012953495606780052,
+      "max_rgb": 0.9254902601242065,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 287,
+      "mean_rgb": 0.0012953495606780052,
+      "max_rgb": 0.9254902601242065,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 288,
+      "mean_rgb": 0.0020703135523945093,
+      "max_rgb": 0.9294118285179138,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 289,
+      "mean_rgb": 0.002661303151398897,
+      "max_rgb": 0.9294118285179138,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 290,
+      "mean_rgb": 0.002661304082721472,
+      "max_rgb": 0.9294118285179138,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 291,
+      "mean_rgb": 0.002661304082721472,
+      "max_rgb": 0.9294118285179138,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 292,
+      "mean_rgb": 0.0018715388141572475,
+      "max_rgb": 0.9294118285179138,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 293,
+      "mean_rgb": 0.001871537882834673,
+      "max_rgb": 0.9294118285179138,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 294,
+      "mean_rgb": 0.0018715388141572475,
+      "max_rgb": 0.9294118285179138,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 295,
+      "mean_rgb": 0.0011364370584487915,
+      "max_rgb": 0.9333333969116211,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 296,
+      "mean_rgb": 0.0011364370584487915,
+      "max_rgb": 0.9333333969116211,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 297,
+      "mean_rgb": 0.0017498212400823832,
+      "max_rgb": 0.9333333969116211,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 298,
+      "mean_rgb": 0.0017498203087598085,
+      "max_rgb": 0.9333333969116211,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 299,
+      "mean_rgb": 0.0025378211867064238,
+      "max_rgb": 0.9372549653053284,
+      "expected_dark_pause": true
+    },
+    {
+      "frame": 300,
+      "mean_rgb": 0.0025378221180289984,
+      "max_rgb": 0.9372549653053284,
+      "expected_dark_pause": true
+    }
+  ],
+  "visual_review": "Decoded MP4 frames 1, 150, 277 and 300 inspected; no lasers or ceiling tubes; dark pauses match the approved cue."
+}

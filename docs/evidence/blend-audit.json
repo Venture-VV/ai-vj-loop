@@ -1,0 +1,58 @@
+[
+  {
+    "file": "library_loop.blend",
+    "checked_strings": 19,
+    "text_blocks": 0,
+    "objects": 79,
+    "credential_scan": "passed"
+  },
+  {
+    "file": "library_loop_candidate_A.blend",
+    "checked_strings": 18,
+    "text_blocks": 0,
+    "objects": 84,
+    "credential_scan": "passed"
+  },
+  {
+    "file": "library_loop_candidate_B.blend",
+    "checked_strings": 18,
+    "text_blocks": 0,
+    "objects": 84,
+    "credential_scan": "passed"
+  },
+  {
+    "file": "library_loop_final.blend",
+    "checked_strings": 18,
+    "text_blocks": 0,
+    "objects": 84,
+    "credential_scan": "passed"
+  },
+  {
+    "file": "library_loop_gallery.blend",
+    "checked_strings": 18,
+    "text_blocks": 0,
+    "objects": 108,
+    "credential_scan": "passed"
+  },
+  {
+    "file": "library_loop_gallery.blend1",
+    "checked_strings": 18,
+    "text_blocks": 0,
+    "objects": 107,
+    "credential_scan": "passed"
+  },
+  {
+    "file": "library_loop_white_reference.blend",
+    "checked_strings": 18,
+    "text_blocks": 0,
+    "objects": 84,
+    "credential_scan": "passed"
+  },
+  {
+    "file": "library_loop_white_reference.blend1",
+    "checked_strings": 18,
+    "text_blocks": 0,
+    "objects": 84,
+    "credential_scan": "passed"
+  }
+]

@@ -1,0 +1,22 @@
+{
+  "source": "./library_loop_gallery.blend",
+  "source_sha256": "df4fcd36c82ecc3e7188bd60ab80744a2019d8dc60536c3fbc91a87aaaca7a5f",
+  "scene": "HERO",
+  "frame_range": [
+    1,
+    300
+  ],
+  "resolution": [
+    1920,
+    744
+  ],
+  "fps": 30,
+  "samples": 96,
+  "reused_frames": [
+    1,
+    76,
+    151,
+    226
+  ],
+  "started_at": "2026-11-13T07:08:27.353213+00:00"
+}

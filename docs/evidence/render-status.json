@@ -1,0 +1,17 @@
+{
+  "pid": 81416,
+  "started_at": "2026-11-13T00:36:16.871989+00:00",
+  "stage": "complete",
+  "completed_frames": 300,
+  "updated_at": "2026-11-13T02:39:19.416291+00:00",
+  "log": "./out/assemble-hero.log",
+  "elapsed_seconds": 7387.62,
+  "render_completed_at": "2026-11-13T02:39:09.370349+00:00",
+  "render_elapsed_seconds": 7372.53,
+  "completed_at": "2026-11-13T02:39:24.462221+00:00",
+  "video": "./out/library_loop_hero.mp4",
+  "validation": "passed",
+  "visual_qa": "passed",
+  "final_qa_file": "./out/final-qa.json",
+  "final_reviewed_at": "2026-11-13T04:47:25.213721+00:00"
+}

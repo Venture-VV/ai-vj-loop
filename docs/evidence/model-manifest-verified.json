@@ -1,0 +1,62 @@
+[
+  {
+    "file": "hero_1_demon_rising.glb",
+    "bytes": 8551672,
+    "triangles": 281313,
+    "sha256": "23e2465d95daa962597b5a581fd4da725bd210f66a337bf1d9c675fde01fb04d"
+  },
+  {
+    "file": "hero_1_demon_rising__v2.glb",
+    "bytes": 8564532,
+    "triangles": 286802,
+    "sha256": "89e59bb1ce987a86fb631d989084659c3f8f8e48a5ba4c9cad7dc22b675ca86a"
+  },
+  {
+    "file": "hero_2_angel_trumpet.glb",
+    "bytes": 8745944,
+    "triangles": 293876,
+    "sha256": "a5c1be9fde19f75207c5323d42d7996ea067d924896041c7cbf46b7c343e0b71"
+  },
+  {
+    "file": "hero_2_angel_trumpet__v2.glb",
+    "bytes": 8755956,
+    "triangles": 295574,
+    "sha256": "a2de79aebda1574caa40bed52a6d6a13875bea17c5ea6aee8d44afa35a2474c3"
+  },
+  {
+    "file": "hero_3_michael_dragon.glb",
+    "bytes": 11363032,
+    "triangles": 379890,
+    "sha256": "e5ac7717d091c7e8cbb57e741657d732065d3ed9d35bac001437bef45a2b955d"
+  },
+  {
+    "file": "hero_3_michael_dragon__v2.glb",
+    "bytes": 11319444,
+    "triangles": 379319,
+    "sha256": "58e9a89c15ef9a839c783d5423a42dafb46584b5c4a5cc2013d5cb86f0b2f94c"
+  },
+  {
+    "file": "hero_4_angel_spear.glb",
+    "bytes": 8418756,
+    "triangles": 281233,
+    "sha256": "f4aa0bd6abe73895ee86eaa398e614b10d1e2e18fe05a53fb5438d539a50aacf"
+  },
+  {
+    "file": "hero_4_angel_spear__v2.glb",
+    "bytes": 8725468,
+    "triangles": 292404,
+    "sha256": "60c621e1d0f210d88aae22822fd2e31ace4d4b2d931066884ca6d83526382027"
+  },
+  {
+    "file": "hero_5_lucifer_falling.glb",
+    "bytes": 8768792,
+    "triangles": 290593,
+    "sha256": "6aab1e178294ba4c4ad928421ca9e6204bc4a19e17009931e4bb85a110ca755b"
+  },
+  {
+    "file": "hero_5_lucifer_falling__v2.glb",
+    "bytes": 8757164,
+    "triangles": 288540,
+    "sha256": "6e1438e3e728a2b631c19ee2bc2b1a46dadfba4b24cc5b04eb06eab01474895f"
+  }
+]

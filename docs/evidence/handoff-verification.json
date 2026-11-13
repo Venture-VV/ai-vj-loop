@@ -1,0 +1,14 @@
+{
+  "handoff_date": "2026-11-13",
+  "source_files_restored_and_hash_verified": 1266,
+  "archives_verified": "all member names, bytes, symlink targets and SHA-256 matched",
+  "full_clean_restore": "passed",
+  "offline_tripo_tests": 13,
+  "real_api_calls_in_handoff": 0,
+  "full_renders_in_handoff": 0,
+  "source_python_files": 28,
+  "added_delivery_tools": 2,
+  "secret_scan": "passed; no matched credentials or authorization URLs in publish tree",
+  "blend_audit": "8 scene/backup files opened with scripts disabled; embedded texts/properties/paths checked",
+  "scope": "Technical transfer validation only; user requests an art and logic redesign."
+}

@@ -1,0 +1,42 @@
+[
+  {
+    "asset": "hero_1_demon_rising",
+    "variant": 2,
+    "canonical": "assets/models/hero_1_demon_rising.glb",
+    "selected_source": "assets/models/hero_1_demon_rising__v2.glb",
+    "sha256": "89e59bb1ce987a86fb631d989084659c3f8f8e48a5ba4c9cad7dc22b675ca86a",
+    "original_first": "assets/models/hero_1_demon_rising__v1.glb"
+  },
+  {
+    "asset": "hero_2_angel_trumpet",
+    "variant": 1,
+    "canonical": "assets/models/hero_2_angel_trumpet.glb",
+    "selected_source": "assets/models/hero_2_angel_trumpet.glb",
+    "sha256": "a5c1be9fde19f75207c5323d42d7996ea067d924896041c7cbf46b7c343e0b71",
+    "original_first": "assets/models/hero_2_angel_trumpet.glb"
+  },
+  {
+    "asset": "hero_3_michael_dragon",
+    "variant": 2,
+    "canonical": "assets/models/hero_3_michael_dragon.glb",
+    "selected_source": "assets/models/hero_3_michael_dragon__v2.glb",
+    "sha256": "58e9a89c15ef9a839c783d5423a42dafb46584b5c4a5cc2013d5cb86f0b2f94c",
+    "original_first": "assets/models/hero_3_michael_dragon__v1.glb"
+  },
+  {
+    "asset": "hero_4_angel_spear",
+    "variant": 2,
+    "canonical": "assets/models/hero_4_angel_spear.glb",
+    "selected_source": "assets/models/hero_4_angel_spear__v2.glb",
+    "sha256": "60c621e1d0f210d88aae22822fd2e31ace4d4b2d931066884ca6d83526382027",
+    "original_first": "assets/models/hero_4_angel_spear__v1.glb"
+  },
+  {
+    "asset": "hero_5_lucifer_falling",
+    "variant": 2,
+    "canonical": "assets/models/hero_5_lucifer_falling.glb",
+    "selected_source": "assets/models/hero_5_lucifer_falling__v2.glb",
+    "sha256": "6e1438e3e728a2b631c19ee2bc2b1a46dadfba4b24cc5b04eb06eab01474895f",
+    "original_first": "assets/models/hero_5_lucifer_falling__v1.glb"
+  }
+]

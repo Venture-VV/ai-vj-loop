@@ -1,0 +1,72 @@
+{
+  "_readme": "One entry per Tripo model. `id` is the file name the Blender import script looks for (assets/models/<id>.glb). Used by scripts/tripo_batch.py (API) — or copy `prompt` into Tripo Studio by hand and save the GLB under that name.",
+  "defaults": {
+    "model": "v3.1-20260211",
+    "texture": false,
+    "pbr": false,
+    "geometry_quality": "detailed",
+    "negative_prompt": "several separate objects, floating disconnected parts, flat or hollow back, paper-thin geometry, low detail, blurry surface, text, modern clothing, cropped figure, missing base"
+  },
+  "style_suffix": " One single solid Baroque marble sculpture group in the manner of Bernini, monumental, full figure, dramatic movement, deeply undercut drapery folds, individually carved feathers, crisp chisel detail, sculpted in the round so the back is finished too, standing on its own base.",
+  "assets": [
+    {
+      "id": "hero_3_michael_dragon",
+      "slot": 3,
+      "role": "centre · heaven · the focal point of every ripple",
+      "face_limit": 400000,
+      "prompt": "Archangel Michael triumphant: a young warrior angel in Roman cuirass and windblown cloak stands upright on a writhing horned dragon, both hands raising a great straight sword vertically above his head, face lifted, two enormous feathered wings spread wide and high in a symmetrical V. The dragon is crushed under his feet and coils across a giant open antique book whose pages curl and lift; the open book rests on two thick stacked tomes that form the plinth. Strictly frontal, symmetrical altarpiece composition.",
+      "image_prompt": "Front view, full height, single white marble statue: Archangel Michael, sword raised vertically overhead with both hands, huge feathered wings spread wide, standing on a dragon that lies on a giant open antique book on stacked tomes. Baroque, Bernini. Plain mid-grey studio background, soft even light, nothing cropped."
+    },
+    {
+      "id": "hero_2_angel_trumpet",
+      "slot": 2,
+      "role": "inner left · heaven · the trumpet of Revelation, aimed at the centre",
+      "face_limit": 300000,
+      "prompt": "An angel of the Apocalypse sounding the trumpet: a robed angel strides forward on a giant open antique book, head tilted back, blowing a long straight trumpet held up high with one hand and pointing up and to the right, the other arm swept back for balance, feathered wings swept back and upward, robes and hair blown by wind, loose pages lifting from the book around the feet. The open book lies on two stacked tomes as the plinth.",
+      "image_prompt": "Front view, full height, single white marble statue: robed angel blowing a long straight trumpet raised up to the right, wings swept back, standing on a giant open antique book on stacked tomes. Baroque, Bernini. Plain mid-grey studio background, soft even light, nothing cropped."
+    },
+    {
+      "id": "hero_4_angel_spear",
+      "slot": 4,
+      "role": "inner right · heaven · attacks outward, toward the fallen angel",
+      "face_limit": 300000,
+      "prompt": "A warrior angel in armour lunges forward and thrusts a long spear diagonally downward to the right with both hands, a round shield strapped to the left forearm, helmet with crest, cloak streaming behind, feathered wings raised high and half open, one foot braced on the raised edge of a giant open antique book, pages scattering under the feet. The open book lies on two stacked tomes as the plinth.",
+      "image_prompt": "Front view, full height, single white marble statue: armoured warrior angel lunging and thrusting a long spear diagonally down to the right, round shield on the left arm, wings raised, on a giant open antique book on stacked tomes. Baroque. Plain mid-grey studio background, soft even light, nothing cropped."
+    },
+    {
+      "id": "hero_1_demon_rising",
+      "slot": 1,
+      "role": "outer left · hell · climbs out of the book, reaches for the centre",
+      "face_limit": 300000,
+      "prompt": "A horned demon claws its way up out of the pages of a giant open antique book: the muscular torso emerges from the torn paper at the waist, one clawed arm stretched upward and to the right, the other hand gripping the edge of the book, snarling face with curved ram horns, tattered bat wings half unfolded behind the shoulders, a barbed tail whipping out of the pages, sheets of paper curling around the body. The open book lies on two stacked tomes as the plinth.",
+      "prompt_if_moderated": "A horned gargoyle with bat wings climbs up out of the pages of a giant open antique book: the muscular torso emerges from the torn paper at the waist, one clawed arm stretched upward and to the right, the other hand gripping the edge of the book, grimacing face with curved ram horns, tattered membrane wings half unfolded, sheets of paper curling around the body. The open book lies on two stacked tomes as the plinth.",
+      "image_prompt": "Front view, full height, single black marble statue with gold veins: horned bat-winged demon climbing out of the pages of a giant open antique book, one clawed arm reaching up to the right. Baroque. Plain mid-grey studio background, soft even light, nothing cropped."
+    },
+    {
+      "id": "hero_5_lucifer_falling",
+      "slot": 5,
+      "role": "outer right · hell · the fallen angel, thrown back, shielding his face",
+      "face_limit": 300000,
+      "prompt": "The fall of Lucifer: a beautiful fallen angel is thrown backward and to the right, body arched, one forearm raised to shield his face from light above, the other arm flung out, one wing still feathered but broken and drooping, the other wing already a tattered bat wing, small horns breaking through the hair, a broken sword and loose chains at his feet. He tumbles onto a giant open antique book whose pages burst upward. The open book lies on two stacked tomes as the plinth.",
+      "image_prompt": "Front view, full height, single black marble statue with gold veins: fallen angel Lucifer thrown backward to the right, forearm shielding his face, one broken feathered wing and one bat wing, broken sword at his feet, on a giant open antique book on stacked tomes. Baroque. Plain mid-grey studio background, soft even light, nothing cropped."
+    },
+    {
+      "id": "prop_flying_book",
+      "slot": null,
+      "optional": true,
+      "role": "set dressing · replaces the 16 floating books",
+      "face_limit": 30000,
+      "geometry_quality": "standard",
+      "prompt": "A single antique leather-bound book lying open, thick block of pages fanned out and fluttering as if caught by wind, a few pages lifting, ornate embossed cover with metal corner clasps. One solid object."
+    },
+    {
+      "id": "prop_book_pile",
+      "slot": null,
+      "optional": true,
+      "role": "set dressing · place by hand at the feet of the columns",
+      "face_limit": 60000,
+      "geometry_quality": "standard",
+      "prompt": "A knee-high heap of antique leather-bound books fallen from a shelf, some closed and stacked crookedly, some lying open with bent pages, one candle stub on top. One solid object, sculpted in the round."
+    }
+  ]
+}

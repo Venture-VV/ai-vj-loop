@@ -1,0 +1,21 @@
+{
+  "stage": "complete",
+  "pid": 17974,
+  "started_at": "2026-11-13T05:09:17.092762+00:00",
+  "completed_frames": 300,
+  "authorization": "[PRIVATE_FIELD_REMOVED]",
+  "tripo_additional_credits": 0,
+  "source": "./library_loop_white_reference.blend",
+  "source_sha256": "89bf55a7b9dccb7b90b74765a6cef102a5581f0d0094374a0ef1313290ef7331",
+  "updated_at": "2026-11-13T05:57:23.954303+00:00",
+  "log": "./out/assemble-white-reference.log",
+  "elapsed_seconds": 2891.91,
+  "render_completed_at": "2026-11-13T05:57:18.939489+00:00",
+  "render_elapsed_seconds": 2881.86,
+  "completed_at": "2026-11-13T05:57:28.992288+00:00",
+  "video": "./out/library_loop_white_reference.mp4",
+  "validation": "passed",
+  "visual_qa": "passed",
+  "final_reviewed_at": "2026-11-13T05:59:26.821003+00:00",
+  "qa_evidence": "out/white-reference-full-qa.json"
+}

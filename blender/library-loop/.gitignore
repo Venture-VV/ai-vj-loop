@@ -1,0 +1,11 @@
+*.blend
+*.blend1
+renders/
+out/*
+!out/*.py
+tripo/tasks.json
+tripo/tasks.json.tmp
+tripo/images/
+assets/models/*
+!assets/models/.gitkeep
+__pycache__/

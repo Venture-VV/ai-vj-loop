@@ -1,0 +1,169 @@
+00:00.228  blend            | Read blend: "./library_loop_white_reference.blend"
+[white preview] {"stage": "rendering", "source": "./library_loop_white_reference.blend", "source_sha256": "89bf55a7b9dccb7b90b74765a6cef102a5581f0d0094374a0ef1313290ef7331", "started_at": "2026-11-13T04:57:26.266844+00:00", "rendered_cycle_frames": 32, "preview_repetitions": 4, "preview_frames": 128, "preview_duration_seconds": 4.266666666666667, "resolution": [1920, 744], "samples": 96}
+00:16.275  render           | Saved: './renders/white_reference_cycle/f_0002.png'
+00:30.155  render           | Saved: './renders/white_reference_cycle/f_0003.png'
+00:43.583  render           | Saved: './renders/white_reference_cycle/f_0004.png'
+00:57.482  render           | Saved: './renders/white_reference_cycle/f_0005.png'
+01:11.061  render           | Saved: './renders/white_reference_cycle/f_0006.png'
+01:26.570  render           | Saved: './renders/white_reference_cycle/f_0008.png'
+01:39.608  render           | Saved: './renders/white_reference_cycle/f_0009.png'
+01:52.978  render           | Saved: './renders/white_reference_cycle/f_0010.png'
+02:08.360  render           | Saved: './renders/white_reference_cycle/f_0011.png'
+02:21.339  render           | Saved: './renders/white_reference_cycle/f_0012.png'
+02:35.470  render           | Saved: './renders/white_reference_cycle/f_0013.png'
+02:48.032  render           | Saved: './renders/white_reference_cycle/f_0014.png'
+02:59.891  render           | Saved: './renders/white_reference_cycle/f_0015.png'
+03:09.259  render           | Saved: './renders/white_reference_cycle/f_0016.png'
+03:18.902  render           | Saved: './renders/white_reference_cycle/f_0017.png'
+03:29.260  render           | Saved: './renders/white_reference_cycle/f_0018.png'
+03:39.739  render           | Saved: './renders/white_reference_cycle/f_0019.png'
+03:49.624  render           | Saved: './renders/white_reference_cycle/f_0020.png'
+04:02.268  render           | Saved: './renders/white_reference_cycle/f_0022.png'
+04:14.395  render           | Saved: './renders/white_reference_cycle/f_0023.png'
+04:26.633  render           | Saved: './renders/white_reference_cycle/f_0024.png'
+04:38.903  render           | Saved: './renders/white_reference_cycle/f_0025.png'
+04:50.850  render           | Saved: './renders/white_reference_cycle/f_0026.png'
+05:02.768  render           | Saved: './renders/white_reference_cycle/f_0027.png'
+05:14.672  render           | Saved: './renders/white_reference_cycle/f_0028.png'
+05:24.039  render           | Saved: './renders/white_reference_cycle/f_0029.png'
+05:34.613  render           | Saved: './renders/white_reference_cycle/f_0030.png'
+05:44.527  render           | Saved: './renders/white_reference_cycle/f_0032.png'
+[render] Cycles on METAL ['Apple M4 (GPU - 10 cores)']
+[render] HERO  CYCLES  1920x744  frames 1-32  ->  ./renders/white_reference_cycle
+[render] done HERO
+[white preview] {"stage": "assembling", "source": "./library_loop_white_reference.blend", "source_sha256": "89bf55a7b9dccb7b90b74765a6cef102a5581f0d0094374a0ef1313290ef7331", "started_at": "2026-11-13T04:57:26.266844+00:00", "rendered_cycle_frames": 32, "preview_repetitions": 4, "preview_frames": 128, "preview_duration_seconds": 4.266666666666667, "resolution": [1920, 744], "samples": 96, "render_seconds": 344.57}
+05:45.399  render           | Video append frame 1
+05:45.415  render           | Video append frame 2
+05:45.429  render           | Video append frame 3
+05:45.442  render           | Video append frame 4
+05:45.454  render           | Video append frame 5
+05:45.467  render           | Video append frame 6
+05:45.483  render           | Video append frame 7
+05:45.500  render           | Video append frame 8
+05:45.515  render           | Video append frame 9
+05:45.530  render           | Video append frame 10
+05:45.545  render           | Video append frame 11
+05:45.559  render           | Video append frame 12
+05:45.572  render           | Video append frame 13
+05:45.584  render           | Video append frame 14
+05:45.594  render           | Video append frame 15
+05:45.605  render           | Video append frame 16
+05:45.614  render           | Video append frame 17
+05:45.624  render           | Video append frame 18
+05:45.633  render           | Video append frame 19
+05:45.643  render           | Video append frame 20
+05:45.658  render           | Video append frame 21
+05:45.673  render           | Video append frame 22
+05:45.686  render           | Video append frame 23
+05:45.700  render           | Video append frame 24
+05:45.713  render           | Video append frame 25
+05:45.725  render           | Video append frame 26
+05:45.737  render           | Video append frame 27
+05:45.747  render           | Video append frame 28
+05:45.758  render           | Video append frame 29
+05:45.767  render           | Video append frame 30
+05:45.777  render           | Video append frame 31
+05:45.786  render           | Video append frame 32
+05:45.803  render           | Video append frame 33
+05:45.817  render           | Video append frame 34
+05:45.831  render           | Video append frame 35
+05:45.844  render           | Video append frame 36
+05:45.857  render           | Video append frame 37
+05:45.869  render           | Video append frame 38
+05:45.886  render           | Video append frame 39
+05:45.902  render           | Video append frame 40
+05:45.919  render           | Video append frame 41
+05:45.934  render           | Video append frame 42
+05:45.948  render           | Video append frame 43
+05:45.961  render           | Video append frame 44
+05:45.975  render           | Video append frame 45
+05:45.987  render           | Video append frame 46
+05:45.998  render           | Video append frame 47
+05:46.008  render           | Video append frame 48
+05:46.018  render           | Video append frame 49
+05:46.028  render           | Video append frame 50
+05:46.038  render           | Video append frame 51
+05:46.048  render           | Video append frame 52
+05:46.063  render           | Video append frame 53
+05:46.080  render           | Video append frame 54
+05:46.094  render           | Video append frame 55
+05:46.108  render           | Video append frame 56
+05:46.123  render           | Video append frame 57
+05:46.135  render           | Video append frame 58
+05:46.147  render           | Video append frame 59
+05:46.158  render           | Video append frame 60
+05:46.167  render           | Video append frame 61
+05:46.177  render           | Video append frame 62
+05:46.186  render           | Video append frame 63
+05:46.195  render           | Video append frame 64
+05:46.210  render           | Video append frame 65
+05:46.224  render           | Video append frame 66
+05:46.240  render           | Video append frame 67
+05:46.262  render           | Video append frame 68
+05:46.275  render           | Video append frame 69
+05:46.291  render           | Video append frame 70
+05:46.310  render           | Video append frame 71
+05:46.331  render           | Video append frame 72
+05:46.351  render           | Video append frame 73
+05:46.370  render           | Video append frame 74
+05:46.392  render           | Video append frame 75
+05:46.408  render           | Video append frame 76
+05:46.425  render           | Video append frame 77
+05:46.441  render           | Video append frame 78
+05:46.454  render           | Video append frame 79
+05:46.469  render           | Video append frame 80
+05:46.483  render           | Video append frame 81
+05:46.497  render           | Video append frame 82
+05:46.509  render           | Video append frame 83
+05:46.521  render           | Video append frame 84
+05:46.540  render           | Video append frame 85
+05:46.559  render           | Video append frame 86
+05:46.576  render           | Video append frame 87
+05:46.595  render           | Video append frame 88
+05:46.611  render           | Video append frame 89
+05:46.627  render           | Video append frame 90
+05:46.642  render           | Video append frame 91
+05:46.655  render           | Video append frame 92
+05:46.669  render           | Video append frame 93
+05:46.680  render           | Video append frame 94
+05:46.691  render           | Video append frame 95
+05:46.701  render           | Video append frame 96
+05:46.715  render           | Video append frame 97
+05:46.729  render           | Video append frame 98
+05:46.742  render           | Video append frame 99
+05:46.755  render           | Video append frame 100
+05:46.771  render           | Video append frame 101
+05:46.783  render           | Video append frame 102
+05:46.799  render           | Video append frame 103
+05:46.815  render           | Video append frame 104
+05:46.831  render           | Video append frame 105
+05:46.846  render           | Video append frame 106
+05:46.860  render           | Video append frame 107
+05:46.873  render           | Video append frame 108
+05:46.888  render           | Video append frame 109
+05:46.900  render           | Video append frame 110
+05:46.910  render           | Video append frame 111
+05:46.920  render           | Video append frame 112
+05:46.930  render           | Video append frame 113
+05:46.940  render           | Video append frame 114
+05:46.949  render           | Video append frame 115
+05:46.958  render           | Video append frame 116
+05:46.973  render           | Video append frame 117
+05:46.988  render           | Video append frame 118
+05:47.002  render           | Video append frame 119
+05:47.017  render           | Video append frame 120
+05:47.030  render           | Video append frame 121
+05:47.042  render           | Video append frame 122
+05:47.054  render           | Video append frame 123
+05:47.064  render           | Video append frame 124
+05:47.074  render           | Video append frame 125
+05:47.083  render           | Video append frame 126
+05:47.093  render           | Video append frame 127
+05:47.102  render           | Video append frame 128
+./out/render_reference_preview.py:72: DeprecationWarning: 'MovieStrip.frame_duration' is expected to be removed in Blender 6.0
+  assert movie.frame_duration==128
+[assemble] ./out/library_loop_white_reference_preview.mp4  1920x744  128 frames  layout=hero
+[white preview] {"stage": "complete", "source": "./library_loop_white_reference.blend", "source_sha256": "89bf55a7b9dccb7b90b74765a6cef102a5581f0d0094374a0ef1313290ef7331", "started_at": "2026-11-13T04:57:26.266844+00:00", "rendered_cycle_frames": 32, "preview_repetitions": 4, "preview_frames": 128, "preview_duration_seconds": 4.266666666666667, "resolution": [1920, 744], "samples": 96, "render_seconds": 344.57, "elapsed_seconds": 346.85, "video": "./out/library_loop_white_reference_preview.mp4", "video_bytes": 1129369, "video_sha256": "6ef457bdff620345c9a9d7a6df0892db361436ee73260833e0d54829306589c0", "audio_sample_rate": 48000.0, "audio_channels": 2, "audio_rms": 0.4094342291355133}
+Blender 5.3.0 (hash 02f0899d78e3 built 2026-11-10 01:31:21)
+
+Blender quit

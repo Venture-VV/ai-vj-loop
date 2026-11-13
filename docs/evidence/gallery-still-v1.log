@@ -1,0 +1,8 @@
+00:00.224  blend            | Read blend: "./library_loop_gallery.blend"
+00:37.016  render           | Saved: './renders/gallery_v1/f_0001.png'
+[render] Cycles on METAL ['Apple M4 (GPU - 10 cores)']
+[render] HERO  CYCLES  1920x744  frames 1-1  ->  ./renders/gallery_v1
+[render] done HERO
+Blender 5.3.0 (hash 02f0899d78e3 built 2026-11-10 01:31:21)
+
+Blender quit

@@ -1,0 +1,37 @@
+[
+  {
+    "frame": 1,
+    "elapsed_seconds": 29.24,
+    "bytes": 2005653
+  },
+  {
+    "frame": 8,
+    "elapsed_seconds": 33.4,
+    "bytes": 2178469
+  },
+  {
+    "frame": 21,
+    "elapsed_seconds": 31.27,
+    "bytes": 2109799
+  },
+  {
+    "frame": 166,
+    "elapsed_seconds": 31.39,
+    "bytes": 2579251
+  },
+  {
+    "frame": 173,
+    "elapsed_seconds": 39.42,
+    "bytes": 2692421
+  },
+  {
+    "frame": 250,
+    "elapsed_seconds": 32.36,
+    "bytes": 2573191
+  },
+  {
+    "frame": 277,
+    "elapsed_seconds": 40.7,
+    "bytes": 2570598
+  }
+]

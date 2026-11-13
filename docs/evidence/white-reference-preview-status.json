@@ -1,0 +1,27 @@
+{
+  "stage": "complete",
+  "source": "./library_loop_white_reference.blend",
+  "source_sha256": "89bf55a7b9dccb7b90b74765a6cef102a5581f0d0094374a0ef1313290ef7331",
+  "started_at": "2026-11-13T04:57:26.266844+00:00",
+  "rendered_cycle_frames": 32,
+  "preview_repetitions": 4,
+  "preview_frames": 128,
+  "preview_duration_seconds": 4.266666666666667,
+  "resolution": [
+    1920,
+    744
+  ],
+  "samples": 96,
+  "render_seconds": 344.57,
+  "elapsed_seconds": 346.85,
+  "video": "./out/library_loop_white_reference_preview.mp4",
+  "video_bytes": 1129369,
+  "video_sha256": "6ef457bdff620345c9a9d7a6df0892db361436ee73260833e0d54829306589c0",
+  "audio_sample_rate": 48000.0,
+  "audio_channels": 2,
+  "audio_rms": 0.4094342291355133,
+  "visual_qa": "passed",
+  "qa_evidence": "out/white-reference-preview-qa.json",
+  "full_300_render": "complete; see out/white-reference-full-status.json",
+  "full_video": "./out/library_loop_white_reference.mp4"
+}

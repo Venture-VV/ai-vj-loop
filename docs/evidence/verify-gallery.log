@@ -1,0 +1,15 @@
+
+START 2026-11-13T09:26:51.630492+00:00
+./out/verify_gallery_full.py:23: DeprecationWarning: 'MovieStrip.frame_duration' is expected to be removed in Blender 6.0
+  assert movie.frame_duration==300
+00:00.689  render           | Saved: './renders/gallery_full_video_qa/f_0001.png'
+00:00.826  render           | Saved: './renders/gallery_full_video_qa/f_0076.png'
+00:00.964  render           | Saved: './renders/gallery_full_video_qa/f_0150.png'
+00:01.074  render           | Saved: './renders/gallery_full_video_qa/f_0151.png'
+00:01.207  render           | Saved: './renders/gallery_full_video_qa/f_0226.png'
+00:01.340  render           | Saved: './renders/gallery_full_video_qa/f_0277.png'
+00:01.452  render           | Saved: './renders/gallery_full_video_qa/f_0300.png'
+[gallery final QA] {"png_frames_checked": 300, "video_sample_frames": [1, 76, 150, 151, 226, 277, 300], "frame_dimensions": [1920, 744], "unexpected_blank_frames": [], "max_relative_brightness_step": 0.0005373225321082711, "boundary_rmse": 0.0025267943274229765, "max_ordinary_transition_rmse": 0.005850244779139757, "video_sample_comparisons": [{"frame": 1, "rgb_rmse_in_blender": 0.01255632471293211, "source_mean": 0.28567492961883545, "decoded_mean": 0.2861005961894989}, {"frame": 76, "rgb_rmse_in_blender": 0.011723695322871208, "source_mean": 0.29241088032722473, "decoded_mean": 0.29251226782798767}, {"frame": 150, "rgb_rmse_in_blender": 0.012061018496751785, "source_mean": 0.2864656448364258, "decoded_mean": 0.28717148303985596}, {"frame": 151, "rgb_rmse_in_blender": 0.011290652677416801, "source_mean": 0.28633782267570496, "decoded_mean": 0.2866836488246918}, {"frame": 226, "rgb_rmse_in_blender": 0.01167720090597868, "source_mean": 0.27967625856399536, "decoded_mean": 0.2798662483692169}, {"frame": 277, "rgb_rmse_in_blender": 0.01158712524920702, "source_mean": 0.28244975209236145, "decoded_mean": 0.2821463346481323}, {"frame": 300, "rgb_rmse_in_blender": 0.01262455154210329, "source_mean": 0.28553053736686707, "decoded_mean": 0.28366807103157043}], "audio": {"sample_rate": 48000.0, "channels": 2, "decoded_samples": 480256, "rms": 0.3811361491680145, "peak": 1.083526372909546}}
+Blender 5.3.0 (hash 02f0899d78e3 built 2026-11-10 01:31:21)
+
+Blender quit

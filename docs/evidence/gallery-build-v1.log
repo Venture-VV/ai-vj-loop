@@ -1,0 +1,10 @@
+00:00.606  blend            | Read blend: "./library_loop_final.blend"
+./scripts/gallery_lighting.py:85: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  if mat.name.startswith('TITLE_') and mat.use_nodes:
+./scripts/gallery_lighting.py:95: DeprecationWarning: 'Scene.compositing_node_group' is expected to be removed in Blender 6.0
+  compositor = (scene.compositing_node_group if hasattr(scene, 'compositing_node_group')
+Info: Saved as "library_loop_gallery.blend"
+[gallery] {"source": "./library_loop_final.blend", "output": "./library_loop_gallery.blend", "lighting": "midnight golden library", "frame_count": 300, "cycle_seconds": 10, "samples": 96, "disabled": ["GRID_0", "GRID_1", "GRID_2", "GRID_3", "GRID_4", "GRID_5", "KEY_1", "KEY_2", "KEY_3", "KEY_4", "KEY_5", "SPILL_HELL_1", "SPILL_HELL_2", "SPILL_HEAVEN", "SPILL_HALO", "WASH_BLUE_AISLES", "WASH_BLUE_BACK", "LASER_CURTAIN_A", "LASER_CURTAIN_B", "LASER_FAN_1", "LASER_FAN_3", "LASER_FAN_5", "LASER_FAN_2", "LASER_FAN_4", "LASER_FAN_6", "LASER_HELL_1", "LASER_HELL_2", "LASER_HALO", "LASER_SCANNER"], "lights": ["GALLERY_KEY_1", "GALLERY_RIM_1", "GALLERY_KEY_2", "GALLERY_RIM_2", "GALLERY_KEY_3", "GALLERY_RIM_3", "GALLERY_KEY_4", "GALLERY_RIM_4", "GALLERY_KEY_5", "GALLERY_RIM_5", "GALLERY_FILL", "GALLERY_ARCHITECTURE", "GALLERY_SHELF_1_-1", "GALLERY_SHELF_1_1", "GALLERY_SHELF_2_-1", "GALLERY_SHELF_2_1", "GALLERY_SHELF_3_-1", "GALLERY_SHELF_3_1", "GALLERY_SHELF_4_-1", "GALLERY_SHELF_4_1", "GALLERY_SHELF_5_-1", "GALLERY_SHELF_5_1", "GALLERY_BACK_WALL"], "max_relative_energy_step": 0.0033889191075593024, "all_lights_positive": true, "loop_closes": true, "geometry_material_camera_preserved": true, "title_flicker": false, "haze_density": 0.002}
+Blender 5.3.0 (hash 02f0899d78e3 built 2026-11-10 01:31:21)
+
+Blender quit

@@ -1,0 +1,22 @@
+{
+  "file": "./out/library_loop_gallery.mp4",
+  "bytes": 4292424,
+  "sha256": "2167fa974e8e4b57fba14e5caf63754a85bce984aabf0c795b930b7225a3e6d0",
+  "tracks": [
+    {
+      "type": "vide",
+      "codec": "avc1",
+      "duration_seconds": 10.0,
+      "samples": 300,
+      "width": 1920.0,
+      "height": 744.0,
+      "fps": 30.0
+    },
+    {
+      "type": "soun",
+      "codec": "mp4a",
+      "duration_seconds": 10.026645833333333,
+      "samples": 470
+    }
+  ]
+}

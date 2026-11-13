@@ -1,0 +1,17 @@
+{
+  "before": {
+    "balance": "[PRIVATE_FIELD_REMOVED]",
+    "frozen": "[PRIVATE_FIELD_REMOVED]",
+    "source": "Verified account response before first submission"
+  },
+  "session_before": {
+    "balance": "[PRIVATE_FIELD_REMOVED]",
+    "frozen": "[PRIVATE_FIELD_REMOVED]"
+  },
+  "after": {
+    "balance": "[PRIVATE_FIELD_REMOVED]",
+    "frozen": "[PRIVATE_FIELD_REMOVED]"
+  },
+  "balance_difference": 300.0,
+  "elapsed_seconds": 159.79
+}

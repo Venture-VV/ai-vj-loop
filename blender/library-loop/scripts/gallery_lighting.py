@@ -1,0 +1,236 @@
+"""Warm library / soft sculpture lighting, with a slow ten-second loop.
+
+Run inside Blender, loading the existing scene with the five selected models:
+  blender -b library_loop_final.blend --python-exit-code 2 \
+      -P scripts/gallery_lighting.py -- --out library_loop_gallery.blend
+
+No API requests. Saves a separate scene; camera, statues and book animation stay
+intact. The later art-direction request supersedes the original strobe cue.
+"""
+import argparse
+import json
+import math
+from pathlib import Path
+import sys
+
+import bpy
+from mathutils import Vector
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from reference_lighting import geometry_signature
+
+LIGHT_GAIN = 0.16
+
+
+def area(collection, name, location, target, color, watts, size, size_y):
+    data = bpy.data.lights.new(name, 'AREA')
+    data.shape = 'RECTANGLE'
+    data.size, data.size_y = size, size_y
+    data.color, data.energy = color, watts * LIGHT_GAIN
+    obj = bpy.data.objects.new(name, data)
+    collection.objects.link(obj)
+    obj.location = location
+    obj.rotation_euler = (Vector(target) - obj.location).to_track_quat('-Z', 'Y').to_euler()
+    return obj
+
+
+def breathe(light, watts, amplitude, phase=0.0):
+    """One smooth cycle; amplitude is fractional and baseline is always positive."""
+    for frame in range(1, 302):
+        angle = 2 * math.pi * (frame - 1) / 300 + phase
+        light.data.energy = watts * LIGHT_GAIN * (1 + amplitude * math.sin(angle))
+        light.data.keyframe_insert('energy', frame=frame)
+
+
+def camera_signature(scene):
+    cam = scene.camera
+    return (cam.name, tuple(cam.location), tuple(cam.rotation_euler), cam.data.lens)
+
+
+def title_shade(scene):
+    """A subtle camera-space lower gradient keeps both title lines readable."""
+    dist = 2.02
+    half_w = dist * 18 / scene.camera.data.lens
+    half_h = half_w * 744 / 1920
+    mesh = bpy.data.meshes.new('GALLERY_TITLE_SHADE')
+    mesh.from_pydata([(-half_w,-half_h,0), (half_w,-half_h,0),
+                      (half_w,-half_h*0.42,0), (-half_w,-half_h*0.42,0)], [], [(0,1,2,3)])
+    obj = bpy.data.objects.new('GALLERY_TITLE_SHADE', mesh)
+    bpy.data.collections['TITLE'].objects.link(obj)
+    obj.parent = scene.camera
+    obj.location = (0,0,-dist)
+    for attr in ('visible_shadow','visible_diffuse','visible_glossy',
+                 'visible_transmission','visible_volume_scatter'):
+        setattr(obj, attr, False)
+    mat = bpy.data.materials.new('GALLERY_TITLE_SHADE')
+    mat.use_nodes = True
+    nodes, links = mat.node_tree.nodes, mat.node_tree.links
+    nodes.clear()
+    coord = nodes.new('ShaderNodeTexCoord')
+    split = nodes.new('ShaderNodeSeparateXYZ')
+    links.new(coord.outputs['Generated'], split.inputs[0])
+    ramp = nodes.new('ShaderNodeValToRGB')
+    ramp.color_ramp.elements[0].color = (0.70,0.70,0.70,1)
+    ramp.color_ramp.elements[1].color = (0,0,0,1)
+    ramp.color_ramp.interpolation = 'EASE'
+    links.new(split.outputs['Y'], ramp.inputs[0])
+    mix = nodes.new('ShaderNodeMixShader')
+    clear = nodes.new('ShaderNodeBsdfTransparent')
+    black = nodes.new('ShaderNodeEmission')
+    black.inputs['Color'].default_value = (0,0,0,1)
+    out = nodes.new('ShaderNodeOutputMaterial')
+    links.new(ramp.outputs['Color'], mix.inputs[0])
+    links.new(clear.outputs[0], mix.inputs[1])
+    links.new(black.outputs[0], mix.inputs[2])
+    links.new(mix.outputs[0], out.inputs['Surface'])
+    mesh.materials.append(mat)
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--out', default='library_loop_gallery.blend')
+    opts = parser.parse_args(sys.argv[sys.argv.index('--') + 1:] if '--' in sys.argv else [])
+    source, output = Path(bpy.data.filepath).resolve(), Path(opts.out).resolve()
+    if not source.is_file() or output == source:
+        raise RuntimeError('Load an imported scene and use a separate output path')
+    scene = bpy.data.scenes['HERO']
+    bpy.context.window.scene = scene
+    scene.frame_set(1)
+    statues_before, camera_before = geometry_signature(), camera_signature(scene)
+    if 'RIG_GALLERY' in bpy.data.collections:
+        raise RuntimeError('Start from the selected original scene, not an existing gallery variant')
+
+    disabled = []
+    for obj in scene.objects:
+        if obj.type == 'LIGHT' or obj.name.startswith(('LASER_', 'GRID_')):
+            obj.hide_render = obj.hide_viewport = True
+            disabled.append(obj.name)
+            if obj.type == 'LIGHT':
+                obj.data.animation_data_clear()
+                obj.data.energy = 0
+    bpy.data.collections['LASERS'].hide_render = True
+
+    # Haze gives depth, but must not conceal the shelves or wash out the faces.
+    for node in bpy.data.materials['HAZE'].node_tree.nodes:
+        if node.type == 'VOLUME_SCATTER':
+            node.inputs['Density'].default_value = 0.002
+            node.inputs['Anisotropy'].default_value = 0.20
+    world = scene.world
+    for node in world.node_tree.nodes:
+        if node.type == 'BACKGROUND':
+            node.inputs['Color'].default_value = (0.42, 0.52, 0.70, 1)
+            node.inputs['Strength'].default_value = 0.04
+
+    # Stable typography: the previous six random dropout groups are removed.
+    for mat in bpy.data.materials:
+        if mat.name.startswith('TITLE_') and mat.use_nodes:
+            mat.node_tree.animation_data_clear()
+            for node in mat.node_tree.nodes:
+                if node.type == 'EMISSION':
+                    node.inputs['Strength'].default_value = 1.1
+                    node.inputs['Color'].default_value = (0.94, 0.91, 0.82, 1)
+
+    # The original white columns competed with the white statues once lit.
+    # Give only the architecture a quieter warm stone finish; statue materials
+    # remain untouched. This also preserves the depth between subject and set.
+    stone = bpy.data.materials['MARBLE'].copy()
+    stone.name = 'GALLERY_STONE'
+    for node in stone.node_tree.nodes:
+        if node.type == 'VALTORGB':
+            node.color_ramp.elements[0].color = (0.13, 0.115, 0.10, 1)
+            node.color_ramp.elements[1].color = (0.32, 0.285, 0.24, 1)
+        elif node.type == 'BSDF_PRINCIPLED':
+            node.inputs['Roughness'].default_value = 0.52
+    for obj in scene.objects:
+        if obj.name.startswith('COLUMN_') and obj.type == 'MESH':
+            for slot in obj.material_slots:
+                if slot.material and slot.material.name == 'MARBLE':
+                    slot.material = stone
+    for node in bpy.data.materials['PAPER'].node_tree.nodes:
+        if node.type == 'BSDF_PRINCIPLED':
+            node.inputs['Base Color'].default_value = (0.46, 0.39, 0.28, 1)
+    bpy.data.objects['TITLE'].location.y *= 0.79 / 0.66
+    title_shade(scene)
+
+    scene.view_settings.view_transform = 'AgX'
+    scene.view_settings.look = 'AgX - Medium High Contrast'
+    scene.view_settings.exposure = -0.45
+    compositor = (scene.compositing_node_group if hasattr(scene, 'compositing_node_group')
+                  else scene.node_tree)
+    for node in compositor.nodes:
+        if node.type == 'GLARE':
+            if 'Strength' in node.inputs:
+                node.inputs['Strength'].default_value = 0.14
+                node.inputs['Threshold'].default_value = 1.8
+            else:
+                node.threshold, node.mix = 1.8, -0.9
+
+    collection = bpy.data.collections.new('RIG_GALLERY')
+    scene.collection.children.link(collection)
+    interp = bpy.context.preferences.edit.keyframe_new_interpolation_type
+    bpy.context.preferences.edit.keyframe_new_interpolation_type = 'LINEAR'
+    try:
+        # High, broad keys model faces and wings instead of lighting only the feet.
+        for index in range(1, 6):
+            x = bpy.data.objects['SLOT_' + str(index)].location.x
+            outer = index in (1, 5)
+            watts = 1500 if outer else (750 if index == 3 else 650)
+            light = area(collection, f'GALLERY_KEY_{index}', (x-1.65, -2.4, 4.5),
+                         (x, 0.5, 2.0), (1.0, 0.83, 0.62), watts, 1.7, 2.4)
+            breathe(light, watts, 0.12, -(index-3) * 0.6)
+            rim = area(collection, f'GALLERY_RIM_{index}', (x+1.0, 2.6, 4.35),
+                       (x, 0.5, 2.1), (0.57, 0.76, 1.0),
+                       950 if outer else 400, 1.7, 2.2)
+            breathe(rim, 950 if outer else 400, 0.16, -(index-3)*0.6 + math.pi/2)
+
+        area(collection, 'GALLERY_FILL', (0, -6.2, 3.2), (0, 0.5, 2.0),
+             (0.74, 0.84, 1.0), 900, 15, 4)
+        area(collection, 'GALLERY_ARCHITECTURE', (0, -1.8, 4.6), (0, 6.0, 2.5),
+             (1.0, 0.82, 0.61), 650, 15, 2)
+
+        # Side-facing area lights expose book spines down each aisle. Most of
+        # their illumination stays constant while a small warm swell travels.
+        for index, x in enumerate((-5.2, -2.6, 0.0, 2.6, 5.2), 1):
+            for side in (-1, 1):
+                light = area(collection, f'GALLERY_SHELF_{index}_{side}',
+                             (x, 6.9, 3.0), (x + side * 1.25, 6.9, 2.2),
+                             (1.0, 0.56, 0.24), 750, 6.0, 2.0)
+                breathe(light, 750, 0.08, -index * 0.5)
+        area(collection, 'GALLERY_BACK_WALL', (0, 8.8, 3.0), (0, 12, 2.4),
+             (1.0, 0.66, 0.35), 8000, 27, 3)
+    finally:
+        bpy.context.preferences.edit.keyframe_new_interpolation_type = interp
+
+    # Validate actual evaluated energy on every frame, including the wrap to 1.
+    lights = list(collection.objects)
+    values = []
+    for frame in range(1, 302):
+        scene.frame_set(frame)
+        assert all(bpy.data.objects[name].hide_render for name in disabled)
+        values.append([float(obj.data.energy) for obj in lights])
+    max_step = max(abs(b-a)/max(a,b) for row0,row1 in zip(values,values[1:])
+                   for a,b in zip(row0,row1))
+    if min(min(row) for row in values) <= 0 or max_step > 0.004:
+        raise RuntimeError('Lighting baseline or smoothness validation failed')
+    if max(abs(a-b) for a,b in zip(values[0],values[-1])) > 0.001:
+        raise RuntimeError('Lighting does not close at frame 301')
+    scene.frame_set(1)
+    if geometry_signature() != statues_before or camera_signature(scene) != camera_before:
+        raise RuntimeError('Statue geometry, material assignment, placement or camera changed')
+    assert (scene.frame_start, scene.frame_end, scene.render.fps) == (1,300,30)
+    assert (scene.render.resolution_x, scene.render.resolution_y, scene.cycles.samples) == (1920,744,96)
+    bpy.ops.wm.save_as_mainfile(filepath=str(output))
+    record = dict(source=str(source), output=str(output), lighting='midnight golden library',
+                  frame_count=300, cycle_seconds=10, samples=96, disabled=disabled,
+                  lights=[obj.name for obj in lights], max_relative_energy_step=max_step,
+                  all_lights_positive=True, loop_closes=True,
+                  geometry_material_camera_preserved=True, title_flicker=False,
+                  haze_density=0.002, light_gain=LIGHT_GAIN, energy_by_frame=values)
+    report = output.parent / 'out' / (output.stem + '-validation.json')
+    report.parent.mkdir(exist_ok=True)
+    report.write_text(json.dumps(record, indent=2) + '\n')
+    print('[gallery]', json.dumps({k:v for k,v in record.items() if k!='energy_by_frame'}), flush=True)
+
+
+if __name__ == '__main__':
+    main()

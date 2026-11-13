@@ -1,0 +1,26 @@
+{
+  "stage": "complete",
+  "pid": 37500,
+  "started_at": "2026-11-13T07:08:27.353213+00:00",
+  "completed_frames": 300,
+  "authorization": "[PRIVATE_FIELD_REMOVED]",
+  "tripo_additional_credits": 0,
+  "source": "./library_loop_gallery.blend",
+  "source_sha256": "df4fcd36c82ecc3e7188bd60ab80744a2019d8dc60536c3fbc91a87aaaca7a5f",
+  "reused_or_existing_frames": 4,
+  "updated_at": "2026-11-13T09:28:24.448541+00:00",
+  "log": "./out/verify-gallery.log",
+  "elapsed_seconds": 8319.34,
+  "render_completed_at": "2026-11-13T09:26:41.600667+00:00",
+  "render_elapsed_seconds": 8294.28,
+  "completed_at": "2026-11-13T09:27:06.662961+00:00",
+  "video": "./out/library_loop_gallery.mp4",
+  "validation": "passed",
+  "visual_qa": "passed",
+  "visual_qa_frames": [
+    1,
+    150,
+    300
+  ],
+  "visual_qa_completed_at": "2026-11-13T09:28:24.448541+00:00"
+}

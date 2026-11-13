@@ -1,0 +1,52 @@
+{
+  "hero_1_demon_rising": {
+    "slot": 1,
+    "variant": 2,
+    "source": "hero_1_demon_rising__v2.glb",
+    "yaw": -90,
+    "mirror": false,
+    "sha256": "89e59bb1ce987a86fb631d989084659c3f8f8e48a5ba4c9cad7dc22b675ca86a",
+    "approval": "Selected by assistant under the user instruction to continue and render directly.",
+    "faces": 286802
+  },
+  "hero_2_angel_trumpet": {
+    "slot": 2,
+    "variant": 1,
+    "source": "hero_2_angel_trumpet.glb",
+    "yaw": -90,
+    "mirror": false,
+    "sha256": "a5c1be9fde19f75207c5323d42d7996ea067d924896041c7cbf46b7c343e0b71",
+    "approval": "Selected by assistant under the user instruction to continue and render directly.",
+    "faces": 293876
+  },
+  "hero_3_michael_dragon": {
+    "slot": 3,
+    "variant": 2,
+    "source": "hero_3_michael_dragon__v2.glb",
+    "yaw": -90,
+    "mirror": false,
+    "sha256": "58e9a89c15ef9a839c783d5423a42dafb46584b5c4a5cc2013d5cb86f0b2f94c",
+    "approval": "User explicitly selected second variant and accepted single-hand sword pose.",
+    "faces": 379319
+  },
+  "hero_4_angel_spear": {
+    "slot": 4,
+    "variant": 2,
+    "source": "hero_4_angel_spear__v2.glb",
+    "yaw": 90,
+    "mirror": true,
+    "sha256": "60c621e1d0f210d88aae22822fd2e31ace4d4b2d931066884ca6d83526382027",
+    "approval": "Selected by assistant under the user instruction to continue and render directly.",
+    "faces": 292404
+  },
+  "hero_5_lucifer_falling": {
+    "slot": 5,
+    "variant": 2,
+    "source": "hero_5_lucifer_falling__v2.glb",
+    "yaw": -90,
+    "mirror": false,
+    "sha256": "6e1438e3e728a2b631c19ee2bc2b1a46dadfba4b24cc5b04eb06eab01474895f",
+    "approval": "Selected by assistant under the user instruction to continue and render directly.",
+    "faces": 288540
+  }
+}

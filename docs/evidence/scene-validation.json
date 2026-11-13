@@ -1,0 +1,29 @@
+{
+  "source": "library_loop.blend",
+  "output": "library_loop_final.blend",
+  "checked_frames": [
+    1,
+    8,
+    21,
+    166,
+    173,
+    250,
+    277,
+    300
+  ],
+  "original_animation_sha256_before": "b5e4e1b3d63837118aa03d0b9473d60ac40c13e4c91d24ad40894686f5d09032",
+  "original_animation_sha256_after": "b5e4e1b3d63837118aa03d0b9473d60ac40c13e4c91d24ad40894686f5d09032",
+  "unchanged": true,
+  "resolution": [
+    1920,
+    744
+  ],
+  "fps": 30,
+  "samples": 96,
+  "frame_range": [
+    1,
+    300
+  ],
+  "scene": "HERO",
+  "elapsed_seconds": 4.13
+}

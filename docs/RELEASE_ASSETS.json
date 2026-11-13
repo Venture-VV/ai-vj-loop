@@ -1,0 +1,106 @@
+{
+  "repository": "Venture-VV/ai-vj-loop",
+  "tag": "library-loop-handoff-20261113",
+  "source_commit": "f189263f4401f9571530532ce13846d32ff76951",
+  "assets": [
+    {
+      "name": "tripo-models.tar.gz",
+      "bytes": 93330726,
+      "sha256": "0ec7ce542c02cb9a9ceba944e34655fb8cd5f53c3ce18ae0bd3c726d993d4905",
+      "files": 42,
+      "restore": ".",
+      "profile": "review",
+      "url": "https://github.com/Venture-VV/ai-vj-loop/releases/download/library-loop-handoff-20261113/tripo-models.tar.gz"
+    },
+    {
+      "name": "blender-scenes.tar.gz",
+      "bytes": 354536198,
+      "sha256": "046ef8d992730c4daaa27ab89edf439cf2ee90a62e5938e663dfdc8fb81b60cd",
+      "files": 8,
+      "restore": ".",
+      "profile": "review",
+      "url": "https://github.com/Venture-VV/ai-vj-loop/releases/download/library-loop-handoff-20261113/blender-scenes.tar.gz"
+    },
+    {
+      "name": "execution-evidence.tar.gz",
+      "bytes": 171000,
+      "sha256": "cee62dae831497a33dec95dac0cb7185bde348c0e84fbe73c9fc89819ef02869",
+      "files": 49,
+      "restore": ".",
+      "profile": "review",
+      "url": "https://github.com/Venture-VV/ai-vj-loop/releases/download/library-loop-handoff-20261113/execution-evidence.tar.gz"
+    },
+    {
+      "name": "library_loop_gallery.mp4",
+      "bytes": 4292424,
+      "sha256": "2167fa974e8e4b57fba14e5caf63754a85bce984aabf0c795b930b7225a3e6d0",
+      "files": 1,
+      "restore": "blender/library-loop/out/library_loop_gallery.mp4",
+      "profile": "review",
+      "url": "https://github.com/Venture-VV/ai-vj-loop/releases/download/library-loop-handoff-20261113/library_loop_gallery.mp4"
+    },
+    {
+      "name": "library_loop_hero.mp4",
+      "bytes": 18514387,
+      "sha256": "13cafb576d1d2de827952952a00c37306a3bfaf3010b92c6d9769182ab3b2ed4",
+      "files": 1,
+      "restore": "blender/library-loop/out/library_loop_hero.mp4",
+      "profile": "review",
+      "url": "https://github.com/Venture-VV/ai-vj-loop/releases/download/library-loop-handoff-20261113/library_loop_hero.mp4"
+    },
+    {
+      "name": "library_loop_white_reference.mp4",
+      "bytes": 2516057,
+      "sha256": "5b670f1f308bcf95a468f98fa35b476011d494a03f740a0d29ae1997647cdae2",
+      "files": 1,
+      "restore": "blender/library-loop/out/library_loop_white_reference.mp4",
+      "profile": "review",
+      "url": "https://github.com/Venture-VV/ai-vj-loop/releases/download/library-loop-handoff-20261113/library_loop_white_reference.mp4"
+    },
+    {
+      "name": "reference-and-previz.tar.gz",
+      "bytes": 37512077,
+      "sha256": "08e9719a619f9326171117dd0c9140814223cb238fb354e89ee0971df12f7160",
+      "files": 11,
+      "restore": ".",
+      "profile": "review",
+      "url": "https://github.com/Venture-VV/ai-vj-loop/releases/download/library-loop-handoff-20261113/reference-and-previz.tar.gz"
+    },
+    {
+      "name": "render-checks.tar.gz",
+      "bytes": 89777924,
+      "sha256": "f86fca41396fa3ea47f7d19a76031a816c38a471ee3d612c358989f41b1b991e",
+      "files": 59,
+      "restore": ".",
+      "profile": "review",
+      "url": "https://github.com/Venture-VV/ai-vj-loop/releases/download/library-loop-handoff-20261113/render-checks.tar.gz"
+    },
+    {
+      "name": "renders-gallery.tar.gz",
+      "bytes": 749255051,
+      "sha256": "e663d8ee901e15d92031bd4312949d094cc79b08ed2961725e57ab928dd310c3",
+      "files": 300,
+      "restore": ".",
+      "profile": "all",
+      "url": "https://github.com/Venture-VV/ai-vj-loop/releases/download/library-loop-handoff-20261113/renders-gallery.tar.gz"
+    },
+    {
+      "name": "renders-laser.tar.gz",
+      "bytes": 718854315,
+      "sha256": "d69ad6aa9ae60fdc392a5a5002a4b04a5f8b3ae020a2142355b4973301afe82e",
+      "files": 300,
+      "restore": ".",
+      "profile": "all",
+      "url": "https://github.com/Venture-VV/ai-vj-loop/releases/download/library-loop-handoff-20261113/renders-laser.tar.gz"
+    },
+    {
+      "name": "renders-white.tar.gz",
+      "bytes": 291246873,
+      "sha256": "082446c78b5f814206fce968b10431e445de35e8d5b244a75c4c13c8e116e613",
+      "files": 460,
+      "restore": ".",
+      "profile": "all",
+      "url": "https://github.com/Venture-VV/ai-vj-loop/releases/download/library-loop-handoff-20261113/renders-white.tar.gz"
+    }
+  ]
+}

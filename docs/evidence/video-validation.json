@@ -1,0 +1,22 @@
+{
+  "file": "./out/library_loop_hero.mp4",
+  "bytes": 18514387,
+  "sha256": "13cafb576d1d2de827952952a00c37306a3bfaf3010b92c6d9769182ab3b2ed4",
+  "tracks": [
+    {
+      "type": "vide",
+      "codec": "avc1",
+      "duration_seconds": 10.0,
+      "samples": 300,
+      "width": 1920.0,
+      "height": 744.0,
+      "fps": 30.0
+    },
+    {
+      "type": "soun",
+      "codec": "mp4a",
+      "duration_seconds": 10.026645833333333,
+      "samples": 470
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "stage": "complete",
+  "blend_sha256": "df4fcd36c82ecc3e7188bd60ab80744a2019d8dc60536c3fbc91a87aaaca7a5f",
+  "check_frames": [
+    1,
+    76,
+    151,
+    226
+  ],
+  "production_render_started": true,
+  "tripo_credits_spent": 0,
+  "estimated_full_render_hours": [
+    2.5,
+    3
+  ],
+  "mean_check_seconds": 27.789120551984524,
+  "verified_pngs": [
+    {
+      "file": "f_0001.png",
+      "bytes": 2496044,
+      "sha256": "632fae855129bc36d05bc2ccc55deca19b5cc292ba6ad9e5fc52b5f457d5c22e"
+    },
+    {
+      "file": "f_0076.png",
+      "bytes": 2500621,
+      "sha256": "482c8874964bf4829b651949ef7f72ba33168b34a79bf8a71f022c2741c36240"
+    },
+    {
+      "file": "f_0151.png",
+      "bytes": 2497444,
+      "sha256": "0ace56a97b3ac783a5690675221fc00924c0ca991c15825bd2fbd4f5909dd6f5"
+    },
+    {
+      "file": "f_0226.png",
+      "bytes": 2492778,
+      "sha256": "eeeb81e0f36ccaaf665dae46e074afbe4c4a01cfd8d7aba7f20bfe97e23c5390"
+    }
+  ],
+  "code_commit": "f189263f4401f9571530532ce13846d32ff76951",
+  "visual_review_passed": true,
+  "contact_sheet": "./renders/gallery_checks_contact.png",
+  "approved_at": "2026-11-13T07:08:27.554187+00:00",
+  "video": "./out/library_loop_gallery.mp4",
+  "video_sha256": "2167fa974e8e4b57fba14e5caf63754a85bce984aabf0c795b930b7225a3e6d0",
+  "completed_at": "2026-11-13T09:28:24.448541+00:00"
+}
