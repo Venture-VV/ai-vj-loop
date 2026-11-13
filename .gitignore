@@ -16,3 +16,6 @@ blender/library-loop/tripo/tasks.json
 blender/library-loop/tripo/images/
 blender/library-loop/out/*
 !blender/library-loop/out/*.py
+# review assets restored by tools/fetch_assets.py live in the GitHub Release, not in Git
+blender/library-loop/reference/
+blender/library-loop/previz/

@@ -52,6 +52,13 @@ def main():
     top = sorted(glob.glob(os.path.join(os.path.abspath(o["top"]), "*.png"))) if o["top"] else []
     if not hero:
         sys.exit("no PNG frames in " + o["hero"])
+    for label, frames in (("hero", hero), ("top", top)):          # a missing frame would shift picture against music
+        names = [os.path.basename(f) for f in frames]
+        want = ["f_%04d.png" % i for i in range(1, len(names) + 1)]
+        if names != want:
+            odd = sorted(set(names) ^ set(want))
+            sys.exit("%s frames are not a gapless f_0001.png .. f_%04d.png sequence (check: %s)"
+                     % (label, len(names), ", ".join(odd[:8])))
     layout = o["layout"] or ("stack" if top else "hero")
     if layout == "stack" and len(top) != len(hero):
         sys.exit("stack layout needs the same number of TOP and HERO frames (%d vs %d)" % (len(top), len(hero)))
@@ -89,7 +96,14 @@ def main():
             tt = image_strip(strips, "TOP_%d" % k, top, 3, s0)
             tt.transform.offset_y = (h + gap) / 2
         if os.path.exists(audio):
-            strips.new_sound("MUSIC_%d" % k, audio, 1, s0)
+            # the reference track is 10.03 s, 0.9 frame longer than the picture loop. Untrimmed, the
+            # strips of consecutive loops overlap and double the first 30 ms of every repeat.
+            snd = strips.new_sound("MUSIC_%d" % k, audio, 1 + k % 2, s0)
+            try:
+                if snd.frame_final_duration > n:
+                    snd.frame_final_duration = n
+            except Exception as ex:
+                print("[assemble] could not trim the music strip (%s)" % ex)
 
     out = os.path.abspath(o["out"])
     os.makedirs(os.path.dirname(out), exist_ok=True)

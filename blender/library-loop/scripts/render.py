@@ -53,6 +53,41 @@ def enable_gpus():
     return False
 
 
+def guard_output(out, sc):
+    """Resuming skips frames by file name only, so two things can silently corrupt a sequence:
+    a frame that was being written when the last run stopped (Blender leaves an empty placeholder,
+    which would be skipped forever), and frames from another scene or other settings already in the
+    folder. Remove the first; refuse the second."""
+    import glob, hashlib, json
+    for path in glob.glob(os.path.join(out, "f_*.png")):
+        if os.path.getsize(path) == 0:
+            os.remove(path)
+            print("[render] removed unfinished frame", os.path.basename(path))
+    r = sc.render
+    blend = bpy.data.filepath
+    digest = None
+    if blend and os.path.isfile(blend):
+        h = hashlib.sha256()
+        with open(blend, "rb") as f:
+            for chunk in iter(lambda: f.read(1 << 20), b""):
+                h.update(chunk)
+        digest = h.hexdigest()
+    now = dict(blend=os.path.basename(blend), blend_sha256=digest, scene=sc.name, engine=r.engine,
+               samples=(sc.cycles.samples if r.engine == "CYCLES" else None),
+               resolution=[r.resolution_x * r.resolution_percentage // 100, r.resolution_y * r.resolution_percentage // 100])
+    manifest = os.path.join(out, "render-manifest.json")
+    if os.path.isfile(manifest):
+        with open(manifest, encoding="utf-8") as f:
+            before = json.load(f)
+        if before != now and glob.glob(os.path.join(out, "f_*.png")):
+            sys.exit("[render] %s already holds frames from a different scene or settings:\n  there: %s\n  now:   %s\n"
+                     "Use a new --out folder so the two are never mixed." % (out, before, now))
+    elif glob.glob(os.path.join(out, "f_*.png")):
+        sys.exit("[render] %s holds frames of unknown origin (no render-manifest.json). Use a new --out folder." % out)
+    with open(manifest, "w", encoding="utf-8") as f:
+        json.dump(now, f, indent=2)
+
+
 def main():
     o = args()
     if o["blend"]:
@@ -88,11 +123,14 @@ def main():
             r.compositor_device = "CPU"
         except Exception:
             pass
-    elif r.engine == "CYCLES" and (o["gpu"] or True):
+    elif r.engine == "CYCLES":                 # a GPU is used whenever one is found; --gpu is kept for old commands
         if enable_gpus():
             sc.cycles.device = "GPU"
+        else:
+            print("[render] no GPU found: Cycles stays on", sc.cycles.device)
     out = os.path.abspath(o["out"])
     os.makedirs(out, exist_ok=True)
+    guard_output(out, sc)
     r.filepath = os.path.join(out, "f_")
     r.image_settings.file_format = "PNG"
     r.use_overwrite = False
